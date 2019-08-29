@@ -1,4 +1,4 @@
-import { init, Pool, Sprite, SpriteSheet, GameLoop, initKeys, keyPressed, bindKeys } from 'kontra';
+import { init, Sprite, SpriteSheet, GameLoop, initKeys, keyPressed, bindKeys } from 'kontra';
 
 // canvas initialization
 let { canvas } = init();
@@ -10,9 +10,6 @@ canvas.height = window.innerHeight;
 // import BG data
 import Bg_sprite from './bg';
 import Player_sprite from './player';
-import ObstacleFactory from './obstacleFactory';
-import Star from './star';
-// import Thruster from './thruster';
 
 // let run = new Image();
 // run.src = './images/run.png';
@@ -77,18 +74,11 @@ import Star from './star';
 // });
 // };
 
-// Send star positions along with the background
 // create the background
-let background_sprite1 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
-let background_sprite2 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
-// the second background should start from where the first background ends
-background_sprite2.y = 0;
+let background_sprite = Sprite(Bg_sprite(canvas));
 // create the player
 let player_sprite = Sprite(Player_sprite(canvas));
-// initiate obstacle factory
-let obstacle_factory = new ObstacleFactory(canvas.width,canvas.height);
-//create obstacle
-let obstacle = obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y);
+
 
 // prevent default key behavior
 bindKeys(['up', 'down', 'left', 'right'], function (e) {
@@ -100,28 +90,14 @@ bindKeys(['up', 'down', 'left', 'right'], function (e) {
 
 // use kontra.gameLoop to play the animation
 let loop = GameLoop({
-
   update: function (dt) {
-    background_sprite1.update();
-    background_sprite2.update();
-    // for looping background
-    if (background_sprite1.y == 0) {
-      // once background 1 reaches bottom, start moving background 2 and reposition background 1
-      background_sprite2.y = -canvas.height;
-    }
-    if (background_sprite2.y == 0) {
-      // once background 2 reaches bottom, start moving background 1 and reposition background 2
-      background_sprite1.y = -canvas.height;
-    }
+    background_sprite.update();
     player_sprite.update();
-    obstacle.update();
     // update(background_sprite, run);
   },
   render: function () {
-    background_sprite1.render();
-    background_sprite2.render();
+    background_sprite.render();
     player_sprite.render();
-    obstacle.render();
   }
 });
 
