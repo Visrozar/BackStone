@@ -10,6 +10,7 @@ canvas.height = window.innerHeight;
 // import BG data
 import Bg_sprite from './bg';
 import Player_sprite from './player';
+import ObstacleFactory from './obstacleFactory';
 
 // let run = new Image();
 // run.src = './images/run.png';
@@ -78,7 +79,10 @@ import Player_sprite from './player';
 let background_sprite = Sprite(Bg_sprite(canvas));
 // create the player
 let player_sprite = Sprite(Player_sprite(canvas));
-
+// initiate obstacle factory
+let obstacle_factory = new ObstacleFactory(canvas.width,canvas.height);
+//create obstacle
+let obstacle = obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y);
 
 // prevent default key behavior
 bindKeys(['up', 'down', 'left', 'right'], function (e) {
@@ -90,14 +94,17 @@ bindKeys(['up', 'down', 'left', 'right'], function (e) {
 
 // use kontra.gameLoop to play the animation
 let loop = GameLoop({
+
   update: function (dt) {
     background_sprite.update();
     player_sprite.update();
+    obstacle.update();
     // update(background_sprite, run);
   },
   render: function () {
     background_sprite.render();
     player_sprite.render();
+    obstacle.render();
   }
 });
 
