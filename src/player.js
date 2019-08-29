@@ -4,7 +4,7 @@ export default function player_sprite(canvas) {
     return {
         x: canvas.width / 2,
         y: canvas.height * 4 / 5,
-        speed: 2,
+        speed: 4,
         anchor: { x: 0, y: 0 },
         fillStyle: 'yellow', // thruster color
 
