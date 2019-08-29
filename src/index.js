@@ -59,7 +59,6 @@ let loop = GameLoop({
     obstacle.update();
     highScore = highScore + dt;
     document.getElementById('scoreBoardScore').innerHTML = parseInt(highScore);
-    // update(background_sprite, run);
   },
   render: function () {
     background_sprite1.render();
