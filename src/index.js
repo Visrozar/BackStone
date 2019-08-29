@@ -81,7 +81,6 @@ import Star from './star';
 let background_sprite1 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
 let background_sprite2 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
 // the second background should start from where the first background ends
-// background_sprite2.color = 'green';
 background_sprite2.y = 0;
 // create the player
 let player_sprite = Sprite(Player_sprite(canvas));
@@ -94,24 +93,6 @@ bindKeys(['up', 'down', 'left', 'right'], function (e) {
 
 // clamp sprites movement to the game between x1, y1, and x2, y2
 // background_sprite.position.clamp(0, 0, canvas.width - background_sprite.width, canvas.height - background_sprite.height);
-
-
-
-let pool = Pool({
-  // create a new sprite every time the pool needs a new object
-  create: Sprite
-});
-
-// properties will be passed to the sprites init() function
-pool.get({
-  x: 100,
-  y: 200,
-  width: 20,
-  height: 40,
-  color: 'red',
-  ttl: 60
-});
-
 
 // use kontra.gameLoop to play the animation
 let loop = GameLoop({
@@ -128,13 +109,11 @@ let loop = GameLoop({
       background_sprite1.y = -canvas.height;
     }
     player_sprite.update();
-    pool.render();
   },
   render: function () {
     background_sprite1.render();
     background_sprite2.render();
     player_sprite.render();
-    pool.render();
   }
 });
 
