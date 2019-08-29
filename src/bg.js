@@ -31,7 +31,7 @@ export default function bg_sprite(canvas, stars) {
             this.context.fillStyle = 'white';
             for (let index = 0; index < stars.length; index++) {
                 this.context.beginPath();
-                this.context.arc(stars[index].x * 500 + this.x, stars[index].y * 500 + this.y, stars[index].size, 0, 2 * Math.PI);
+                this.context.arc(stars[index].x * canvas.width + this.x, stars[index].y * canvas.width + this.y, stars[index].size * canvas.width/500, 0, 2 * Math.PI);
                 this.context.fill();
             }
         }
