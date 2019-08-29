@@ -9,8 +9,8 @@ export default function player_sprite(canvas) {
         fillStyle: 'yellow', // thruster color
 
         // required for a rectangle sprite
-        width: 10,
-        height: 15,
+        width: canvas.width / 60,
+        height: canvas.width / 40,
         color: 'blue',
         // pass a custom update function to the sprite
         update: function () {
@@ -47,7 +47,7 @@ export default function player_sprite(canvas) {
             // draw the conical top of the ship
             this.context.beginPath();
             this.context.moveTo(this.x, this.y);
-            this.context.lineTo(this.x + this.width/2, this.y - 5);
+            this.context.lineTo(this.x + this.width / 2, this.y - 5);
             this.context.lineTo(this.x + this.width, this.y);
             this.context.lineTo(this.x, this.y);
             this.context.fillStyle = this.color;
@@ -56,7 +56,7 @@ export default function player_sprite(canvas) {
             // draw the window
             this.context.fillStyle = 'white';
             this.context.beginPath();
-            this.context.arc(this.x + this.width / 2, this.y + this.height/3, 2, 0, 2 * Math.PI);
+            this.context.arc(this.x + this.width / 2, this.y + this.height / 3, 2, 0, 2 * Math.PI);
             this.context.fill();
         }
     }
