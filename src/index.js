@@ -1,7 +1,14 @@
 import { init, Pool, Sprite, SpriteSheet, GameLoop, initKeys, keyPressed, bindKeys } from 'kontra';
 
+// gameMenu initialization
+document.getElementById('startGame').onclick = function startGame() {
+  document.getElementById('menu').style.display = 'none';
+  document.getElementById('myCanvas').style.display = 'block';
+  document.getElementById('scoreBoard').style.display = 'block';
+}
+
 // canvas initialization
-let { canvas } = init();
+let { canvas, highScore = 0 } = init();
 
 // set canvas width as 80% whatever device is being used
 canvas.width = window.innerWidth * 4 / 5;
@@ -12,70 +19,6 @@ import Bg_sprite from './bg';
 import Player_sprite from './player';
 import ObstacleFactory from './obstacleFactory';
 import Star from './star';
-// import Thruster from './thruster';
-
-// let run = new Image();
-// run.src = './images/run.png';
-
-// use spriteSheet to create animations from an image
-// let rightRunSpriteSheet = SpriteSheet({
-//   image: run,
-//   frameWidth: 12,
-//   frameHeight: 16,
-//   animations: {
-//     // create a named animation: run
-//     run: {
-//       frames: '0..3',  // frames 0 through 3
-//       frameRate: 20
-//     },
-//     idle: {
-//       frames: 0,
-//       loop: false
-//     }
-//   }
-// });
-
-// let background_sprite = Sprite({
-//   x: 100,
-//   y: 120,
-//   speed: 0.5,
-//   // dx: 0.5,
-//   // dy: 0.5,
-//   anchor: { x: 0.5, y: 0.5 },
-
-//   // required for an animation sprite
-//   animations: rightRunSpriteSheet.animations,
-//   // pass a custom update function to the sprite
-//   update: function () {
-//     // move the sprite with the keyboard
-//     if (keyPressed('up')) {
-//       // this.playAnimation('walk_up');
-//       this.y -= this.speed;
-//     }
-//     else if (keyPressed('down')) {
-//       this.y += this.speed;
-//     }
-
-//     if (keyPressed('left')) {
-//       // run.style.transform = "scaleX(-1)";
-//       // this.x -= this.dx;
-//       // this.context.scale(-1,1);
-//       this.playAnimation('run');
-//       this.advance();
-//       this.x -= this.speed;
-//     }
-//     else if (keyPressed('right')) {
-//       this.playAnimation('run');
-//       this.advance();
-//       this.x += this.speed;
-//     }
-//     else {
-//       this.playAnimation('idle');
-//       this.advance();
-//     }
-//   }
-// });
-// };
 
 // Send star positions along with the background
 // create the background
@@ -114,6 +57,8 @@ let loop = GameLoop({
     }
     player_sprite.update();
     obstacle.update();
+    highScore = highScore + dt;
+    document.getElementById('scoreBoardScore').innerHTML = parseInt(highScore);
     // update(background_sprite, run);
   },
   render: function () {
