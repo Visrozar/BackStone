@@ -5,10 +5,14 @@ document.getElementById('startGame').onclick = function startGame() {
   document.getElementById('menu').style.display = 'none';
   document.getElementById('myCanvas').style.display = 'block';
   document.getElementById('scoreBoard').style.display = 'block';
+
+  // start the game
+  loop.start();
+  initKeys();
 }
 
 // canvas initialization
-let { canvas, highScore = 0 } = init();
+let { canvas, score = 0 } = init();
 
 // set canvas width as 80% whatever device is being used
 canvas.width = window.innerWidth * 4 / 5;
@@ -57,8 +61,8 @@ let loop = GameLoop({
     }
     player_sprite.update();
     obstacle.update();
-    highScore = highScore + dt;
-    document.getElementById('scoreBoardScore').innerHTML = parseInt(highScore);
+    score = score + dt;
+    document.getElementById('score').innerHTML = parseInt(score);
   },
   render: function () {
     background_sprite1.render();
@@ -67,7 +71,3 @@ let loop = GameLoop({
     obstacle.render();
   }
 });
-
-loop.start();
-
-initKeys();
