@@ -1,0 +1,30 @@
+{
+  "name": "backoff",
+  "version": "0.0.1",
+  "description": "BackOff Game created using KontraJS for JS13K",
+  "private": true,
+  "scripts": {
+    "test": "mocha",
+    "build": "webpack",
+    "watch": "webpack --watch --progress"
+  },
+  "keywords": [
+    "game",
+    "kontra",
+    "js",
+    "backoff",
+    "js13k"
+  ],
+  "author": "Elvis Rozario",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.4",
+    "html-webpack-plugin": "^3.2.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7"
+  },
+  "dependencies": {
+    "kontra": "^6.3.0"
+  }
+}
