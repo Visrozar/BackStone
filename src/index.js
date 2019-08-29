@@ -84,15 +84,13 @@ let background_sprite2 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
 background_sprite2.y = 0;
 // create the player
 let player_sprite = Sprite(Player_sprite(canvas));
-
+// clamp sprites movement to the game between x1, y1, and x2, y2
+player_sprite.position.clamp(0, 0, canvas.width - player_sprite.width, canvas.height - player_sprite.height);
 
 // prevent default key behavior
 bindKeys(['up', 'down', 'left', 'right'], function (e) {
   e.preventDefault();
 });
-
-// clamp sprites movement to the game between x1, y1, and x2, y2
-// background_sprite.position.clamp(0, 0, canvas.width - background_sprite.width, canvas.height - background_sprite.height);
 
 // use kontra.gameLoop to play the animation
 let loop = GameLoop({
