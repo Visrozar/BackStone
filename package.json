@@ -1,7 +1,7 @@
 {
   "name": "backoff",
   "version": "0.0.1",
-  "description": "BackOff Game created using KontraJS for JS13K",
+  "description": "BackStone Game created using KontraJS for JS13K",
   "private": true,
   "scripts": {
     "test": "mocha",
@@ -12,7 +12,7 @@
     "game",
     "kontra",
     "js",
-    "backoff",
+    "backStone",
     "js13k"
   ],
   "author": "Elvis Rozario",
