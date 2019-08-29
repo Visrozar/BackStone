@@ -10,6 +10,7 @@ canvas.height = window.innerHeight;
 // import BG data
 import Bg_sprite from './bg';
 import Player_sprite from './player';
+import ObstacleFactory from './obstacleFactory';
 import Star from './star';
 // import Thruster from './thruster';
 
@@ -84,7 +85,10 @@ let background_sprite2 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
 background_sprite2.y = 0;
 // create the player
 let player_sprite = Sprite(Player_sprite(canvas));
-
+// initiate obstacle factory
+let obstacle_factory = new ObstacleFactory(canvas.width,canvas.height);
+//create obstacle
+let obstacle = obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y);
 
 // prevent default key behavior
 bindKeys(['up', 'down', 'left', 'right'], function (e) {
@@ -96,6 +100,7 @@ bindKeys(['up', 'down', 'left', 'right'], function (e) {
 
 // use kontra.gameLoop to play the animation
 let loop = GameLoop({
+
   update: function (dt) {
     background_sprite1.update();
     background_sprite2.update();
@@ -109,11 +114,14 @@ let loop = GameLoop({
       background_sprite1.y = -canvas.height;
     }
     player_sprite.update();
+    obstacle.update();
+    // update(background_sprite, run);
   },
   render: function () {
     background_sprite1.render();
     background_sprite2.render();
     player_sprite.render();
+    obstacle.render();
   }
 });
 
