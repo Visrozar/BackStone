@@ -1,5 +1,4 @@
 import Obstacle from './obstacle';
-import initialValues from './initialValues';
 
 export default class ObstacleFactory {
     
@@ -10,13 +9,13 @@ export default class ObstacleFactory {
 
         var isStationary = false;
 
-        // assuming moving obstacles probabilty to be 70%
+        // assuming moving obstacles probabilty to be 80%
         var obstacleProbability = Math.random();
-        if ( obstacleProbability >= 0.701 ){
+        if ( obstacleProbability >= 0.801 ){
             isStationary = true
         }
 
-        var obstacle = new Obstacle(initialValues.canvas.width,initialValues.canvas.height,isStationary);
+        var obstacle = new Obstacle(isStationary);
         
         if( !isStationary ){
             //add velocity according to spawn

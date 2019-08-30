@@ -1,19 +1,20 @@
 import { Sprite } from 'kontra';
+import initialValues from './initialValues';
 
 export default class Obstacle extends Sprite.class {
 
-    constructor(canvasWidth,canvasHeight,isStationary){
+    constructor(isStationary){
 
         super();
 
         if (!isStationary){
             // spawn out of canvas
             //random Int from interval = Math.floor(Math.random() * (max - min) + min); // considering -10 to width + 10
-            this.x = Math.floor(Math.random() * (canvasWidth + 20) - 10);
+            this.x = Math.floor(Math.random() * (initialValues.canvas.width + 20) - 10);
 
             //  to left & right of canvas, y -> -10 to 0.7 * canvasheight
-            if((this.x >= -10 && this.x < 0) || this.x > canvasWidth){ 
-                this.y = Math.floor(Math.random() * (0.7*canvasHeight + 10) - 10);
+            if((this.x >= -10 && this.x < 0) || this.x > initialValues.canvas.width){ 
+                this.y = Math.floor(Math.random() * (0.7*initialValues.canvas.height + 10) - 10);
             }
             else {
                 // in canvas , y -> -10 to 0
@@ -22,13 +23,13 @@ export default class Obstacle extends Sprite.class {
         }
         else{
             // stationary object will be inside canvas
-            this.x = Math.floor(Math.random() * canvasWidth);
-            this.y = Math.floor(Math.random() * 0.7*canvasHeight);
+            this.x = Math.floor(Math.random() * initialValues.canvas.width);
+            this.y = Math.floor(Math.random() * 10 - 10);
         }
 
         // initial velocity is zero
         this.dx = 0;
-        this.dy = 1;
+        this.dy = initialValues.backgroundSpeed;
 
         var availableColors = this.get_colours();
         this.color = availableColors[Math.floor(Math.random() * availableColors.length)];
@@ -40,16 +41,10 @@ export default class Obstacle extends Sprite.class {
         }
         // only for testing stationary objects
         else{
-            this.width = Math.floor(Math.random() * (70 - 60 + 1) + 60);
-            this.height = Math.floor(Math.random() * (70 - 60 + 1) + 60);
+            this.width = Math.floor(Math.random() * (70 - 50 + 1) + 50);
+            this.height = Math.floor(Math.random() * (70 - 50 + 1) + 50);
             this.color = 'white';
         }
-
-        //center
-        this.anchor = {x: 0.5, y:0.5}
-
-        //adding ttl - initial 50 frames
-        this.ttl = 10;
 
     };
 

@@ -8,6 +8,7 @@ class initialValues {
         this.core = init();
         this.canvas = this.core.canvas;
         this.score = 0;
+        this.backgroundSpeed = 4;
     }
 }
 

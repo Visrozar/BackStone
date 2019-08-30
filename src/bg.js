@@ -8,7 +8,7 @@ export default function bg_sprite(canvas, stars) {
         y: -canvas.height,
         dx: 0,
         // move it vertically down
-        dy: 4,
+        dy: initialValues.backgroundSpeed,
         // speed: 0.5,
         anchor: { x: 0, y: 0 },
 
