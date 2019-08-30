@@ -1,11 +1,12 @@
 import { keyPressed } from 'kontra';
 import Rewind from './rewind';
+import backStones from './backstone';
 
 export default function player_sprite(canvas) {
     return {
         x: canvas.width / 2,
         y: canvas.height * 4 / 5,
-        speed: 4,
+        speed: 6,
         anchor: { x: 0, y: 0 },
         fillStyle: 'yellow', // thruster color
 
@@ -17,7 +18,7 @@ export default function player_sprite(canvas) {
         // required for moving back in time
         rewind: new Rewind,
         backstone_mode: false,
-        
+
         // pass a custom update function to the sprite
         update: function () {
             if (this.backstone_mode) {
@@ -28,7 +29,7 @@ export default function player_sprite(canvas) {
                     this.y -= rewind.y;
                 }
             } else {
-                if (keyPressed('down')) {
+                if (keyPressed('down') && backStones.value >= 0) {
                     // backstone used
                     this.backstone_mode = true;
                 }
@@ -36,12 +37,14 @@ export default function player_sprite(canvas) {
                     this.advance();
                     this.x -= this.speed;
                     this.rewind.add(-this.speed, 0);
-
                 }
                 else if (keyPressed('right')) {
                     this.advance();
                     this.x += this.speed;
                     this.rewind.add(this.speed, 0);
+                }
+                else {
+                    this.rewind.add(0, 0);
                 }
             }
         },

@@ -10,6 +10,7 @@
         body {
             margin: 0 10%;
         }
+
         .gameStart {
             display: none;
         }
@@ -18,6 +19,14 @@
             display: none;
             position: fixed;
             top: 5%;
+            left: 15%;
+            color: white;
+        }
+
+        .backStoneBoard {
+            display: none;
+            position: fixed;
+            top: 7%;
             left: 15%;
             color: white;
         }
@@ -31,19 +40,22 @@
 <body>
     <canvas id="myCanvas" class="gameStart"></canvas>
     <span id=scoreBoard class="scoreBoard">Score: <span id="score">0</span> </span>
+    <span id=backStoneBoard class="backStoneBoard">BackStones: <span id="backStones">0</span> </span>
     <div id="menu" class="gameMenu">
-        <h1>Highest Score: <span id="highestScore">0</span></h1> 
+        <h1>Highest Score: <span id="highestScore">0</span></h1>
         <p>
-            <h1>Story: </h1> 
+            <h1>Story: </h1>
             <p>
-                The world is on the verge of destruction and you are one of the last surviving ships left of our species.
-                In the modern age of discoveries and technology, we've found a stone capable of doing something that we never even dreamt of, "get you <b>BACK</b> in time".
+                The world is on the verge of destruction and you are one of the last surviving ships left of our
+                species.
+                In the modern age of discoveries and technology, we've found a stone capable of doing something that we
+                never even dreamt of, "get you <b>BACK</b> in time".
                 We started calling these stones as BackStones.
                 These stones can be found spread across the galaxy.
             </p>
-        </p> 
+        </p>
         <p>
-            <h1>Instructions: </h1> 
+            <h1>Instructions: </h1>
             <ul>
                 <li>Use &larr; and &rarr; to move left and right</li>
                 <li>Collect as many BackStones as possible</li>
@@ -51,7 +63,7 @@
                 <li>In a critical situation you can use the &darr; to use a BackStone to reverse the flow of time</li>
                 <li>But don't forget you only have a limited number of BackStones</li>
             </ul>
-        </p> 
+        </p>
         <button id="startGame">Click here to begin</button>
     </div>
 </body>

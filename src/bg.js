@@ -1,5 +1,6 @@
 import { keyPressed } from 'kontra';
 import Rewind from './rewind';
+import backStones from './backstone';
 
 export default function bg_sprite(canvas, stars) {
     return {
@@ -30,7 +31,7 @@ export default function bg_sprite(canvas, stars) {
                     this.y -= rewind.y;
                 }
             } else {
-                if (keyPressed('down')) {
+                if (keyPressed('down') && backStones.value >= 0) {
                     // backstone used
                     this.backstone_mode = true;
                 }
@@ -57,7 +58,7 @@ export default function bg_sprite(canvas, stars) {
                 ctx.fillText("BACK!", canvas.width / 2.7, canvas.height / 2);
 
                 var drawCircle = function (color, lineWidth, percent) {
-                    let radius = canvas.width / 5;
+                    let radius = canvas.width / 6;
                     percent = Math.min(Math.max(0, percent || 1), 1);
                     ctx.beginPath();
                     ctx.arc(canvas.width / 2, canvas.height / 2.10, radius, 0, Math.PI * 2 * percent, false);
@@ -70,6 +71,7 @@ export default function bg_sprite(canvas, stars) {
                 var drawNewGraph = function () {
                     drawCircle('white', 15, 100 / 100);
                     drawCircle(gradient, 15, rewind_length / 100);
+                    console.log(rewind_length);
                 };
                 drawNewGraph();
             }

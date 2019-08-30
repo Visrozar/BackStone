@@ -1,10 +1,12 @@
 import { init, Pool, Sprite, SpriteSheet, GameLoop, initKeys, keyPressed, bindKeys } from 'kontra';
+import backStones from './backstone';
 
 // gameMenu initialization
 document.getElementById('startGame').onclick = function startGame() {
   document.getElementById('menu').style.display = 'none';
   document.getElementById('myCanvas').style.display = 'block';
   document.getElementById('scoreBoard').style.display = 'block';
+  document.getElementById('backStoneBoard').style.display = 'block';
 
   // start the game
   loop.start();
@@ -45,7 +47,7 @@ let obstacle_factory = new ObstacleFactory(canvas.width, canvas.height);
 let obstacle = obstacle_factory.create_obstacle(player_sprite.x, player_sprite.y);
 
 // prevent default key behavior
-bindKeys(['up', 'down', 'left', 'right'], function (e) {
+bindKeys(['left', 'right', 'up', 'down'], function (e) {
   e.preventDefault();
 });
 
@@ -73,6 +75,7 @@ let loop = GameLoop({
     obstacle.update();
     score = score + dt;
     document.getElementById('score').innerHTML = parseInt(score);
+    document.getElementById('backStones').innerHTML = parseInt(backStones.value + 1);
   },
   render: function () {
     background_sprite1.render();
@@ -81,4 +84,9 @@ let loop = GameLoop({
     player_sprite.render();
     obstacle.render();
   }
+});
+
+bindKeys(['down'], function (e) {
+  // backstone used
+  if (backStones.value >= 0) backStones.value--;
 });
