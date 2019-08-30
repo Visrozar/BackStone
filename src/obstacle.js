@@ -28,7 +28,7 @@ export default class Obstacle extends Sprite.class {
 
         // initial velocity is zero
         this.dx = 0;
-        this.dy = 0;
+        this.dy = 1;
 
         var availableColors = this.get_colours();
         this.color = availableColors[Math.floor(Math.random() * availableColors.length)];
@@ -49,7 +49,7 @@ export default class Obstacle extends Sprite.class {
         this.anchor = {x: 0.5, y:0.5}
 
         //adding ttl - initial 50 frames
-        this.ttl = 50;
+        this.ttl = 10;
 
     };
 

@@ -43,9 +43,10 @@ let player_sprite = Sprite(Player_sprite(canvas));
 player_sprite.position.clamp(0, 0, canvas.width - player_sprite.width, canvas.height - player_sprite.height);
 
 // initiate obstacle factory
-let obstacle_factory = new ObstacleFactory(canvas.width, canvas.height);
-// create obstacle for test
-let obstacle = obstacle_factory.create_obstacle(player_sprite.x, player_sprite.y);
+let obstacle_factory = new ObstacleFactory();
+//array of active obstacles
+let obstacles = [];
+
 
 // prevent default key behavior
 bindKeys(['left', 'right', 'up', 'down'], function (e) {
@@ -73,17 +74,31 @@ let loop = GameLoop({
       background_sprite2.y = -canvas.height;
     }
     player_sprite.update();
-    obstacle.update();
     score = score + dt;
     document.getElementById('score').innerHTML = parseInt(score);
     document.getElementById('backStones').innerHTML = parseInt(backStones + 1);
+
+    //update each obstacle
+    obstacles.forEach(function(obstacle){
+      obstacle.update();
+    })
+    // probability of spawning new obstacle is 0.03%
+    if(Math.random() <= 0.03){
+      if (obstacles.length == 15){
+        obstacles.shift();
+      }
+      obstacles.push(obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y));
+    }
   },
   render: function () {
     background_sprite1.render();
     background_sprite2.render();
     background_sprite3.render();
     player_sprite.render();
-    obstacle.render();
+    //render all obstacles
+    obstacles.forEach(function(obstacle){
+      obstacle.render();
+    })
   }
 });
 
