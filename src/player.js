@@ -2,7 +2,9 @@ import { keyPressed } from 'kontra';
 import Rewind from './rewind';
 import initialValues from './initialValues';
 
-export default function player_sprite(canvas) {
+let canvas = initialValues.canvas;
+
+export default function player_sprite() {
     return {
         x: canvas.width / 2,
         y: canvas.height * 4 / 5,
