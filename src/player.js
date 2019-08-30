@@ -1,4 +1,5 @@
 import { keyPressed } from 'kontra';
+import Rewind from './rewind';
 
 export default function player_sprite(canvas) {
     return {
@@ -12,25 +13,36 @@ export default function player_sprite(canvas) {
         width: canvas.width / 60,
         height: canvas.width / 40,
         color: 'blue',
+
+        // required for moving back in time
+        rewind: new Rewind,
+        backstone_mode: false,
+        
         // pass a custom update function to the sprite
         update: function () {
-            // move the sprite with the keyboard
-            if (keyPressed('up')) {
-                // this.playAnimation('walk_up');
-                // this.y -= this.speed;
-            }
-            else if (keyPressed('down')) {
-                // this.y += this.speed;
-            }
+            if (this.backstone_mode) {
+                if (this.rewind.doneRewind()) this.backstone_mode = false;
+                else {
+                    let rewind = this.rewind.back();
+                    this.x -= rewind.x;
+                    this.y -= rewind.y;
+                }
+            } else {
+                if (keyPressed('down')) {
+                    // backstone used
+                    this.backstone_mode = true;
+                }
+                if (keyPressed('left')) {
+                    this.advance();
+                    this.x -= this.speed;
+                    this.rewind.add(-this.speed, 0);
 
-            if (keyPressed('left')) {
-                this.advance();
-                this.x -= this.speed;
-            }
-            else if (keyPressed('right')) {
-                // this.playAnimation('run');
-                this.advance();
-                this.x += this.speed;
+                }
+                else if (keyPressed('right')) {
+                    this.advance();
+                    this.x += this.speed;
+                    this.rewind.add(this.speed, 0);
+                }
             }
         },
         render: function () {
