@@ -1,5 +1,9 @@
-import { init, Pool, Sprite, SpriteSheet, GameLoop, initKeys, keyPressed, bindKeys } from 'kontra';
-import backStones from './backstone';
+import { Sprite, GameLoop, initKeys, bindKeys } from 'kontra';
+import initialValues from './initialValues';
+
+let backStones = initialValues.backStones;
+let score = initialValues.score;
+let canvas = initialValues.canvas;
 
 // gameMenu initialization
 document.getElementById('startGame').onclick = function startGame() {
@@ -12,9 +16,6 @@ document.getElementById('startGame').onclick = function startGame() {
   loop.start();
   initKeys();
 }
-
-// canvas initialization
-let { canvas, score = 0 } = init();
 
 // set canvas width as 80% whatever device is being used
 canvas.width = window.innerWidth * 4 / 5;
@@ -75,7 +76,7 @@ let loop = GameLoop({
     obstacle.update();
     score = score + dt;
     document.getElementById('score').innerHTML = parseInt(score);
-    document.getElementById('backStones').innerHTML = parseInt(backStones.value + 1);
+    document.getElementById('backStones').innerHTML = parseInt(backStones + 1);
   },
   render: function () {
     background_sprite1.render();
@@ -88,5 +89,5 @@ let loop = GameLoop({
 
 bindKeys(['down'], function (e) {
   // backstone used
-  if (backStones.value >= 0) backStones.value--;
+  if (backStones >= 0) backStones--;
 });

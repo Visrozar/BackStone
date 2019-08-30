@@ -1,6 +1,6 @@
 import { keyPressed } from 'kontra';
 import Rewind from './rewind';
-import backStones from './backstone';
+import initialValues from './initialValues';
 
 export default function player_sprite(canvas) {
     return {
@@ -29,7 +29,7 @@ export default function player_sprite(canvas) {
                     this.y -= rewind.y;
                 }
             } else {
-                if (keyPressed('down') && backStones.value >= 0) {
+                if (keyPressed('down') && initialValues.backStones >= 0) {
                     // backstone used
                     this.backstone_mode = true;
                 }
