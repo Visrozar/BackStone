@@ -28,15 +28,20 @@ import Star from './star';
 // create the background
 let background_sprite1 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
 let background_sprite2 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
+let background_sprite3 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
 // the second background should start from where the first background ends
 background_sprite2.y = 0;
+// the third background should start from where the second background ends
+background_sprite3.y = canvas.height;
+
 // create the player
 let player_sprite = Sprite(Player_sprite(canvas));
 // clamp sprites movement to the game between x1, y1, and x2, y2
 player_sprite.position.clamp(0, 0, canvas.width - player_sprite.width, canvas.height - player_sprite.height);
+
 // initiate obstacle factory
 let obstacle_factory = new ObstacleFactory(canvas.width, canvas.height);
-//create obstacle
+// create obstacle
 let obstacle = obstacle_factory.create_obstacle(player_sprite.x, player_sprite.y);
 
 // prevent default key behavior
@@ -50,14 +55,19 @@ let loop = GameLoop({
   update: function (dt) {
     background_sprite1.update();
     background_sprite2.update();
+    background_sprite3.update();
     // for looping background
     if (background_sprite1.y == 0) {
       // once background 1 reaches bottom, start moving background 2 and reposition background 1
-      background_sprite2.y = -canvas.height;
+      background_sprite3.y = -canvas.height;
     }
     if (background_sprite2.y == 0) {
       // once background 2 reaches bottom, start moving background 1 and reposition background 2
       background_sprite1.y = -canvas.height;
+    }
+    if (background_sprite3.y == 0) {
+      // once background 2 reaches bottom, start moving background 1 and reposition background 2
+      background_sprite2.y = -canvas.height;
     }
     player_sprite.update();
     obstacle.update();
@@ -67,6 +77,7 @@ let loop = GameLoop({
   render: function () {
     background_sprite1.render();
     background_sprite2.render();
+    background_sprite3.render();
     player_sprite.render();
     obstacle.render();
   }
