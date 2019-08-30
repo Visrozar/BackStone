@@ -29,16 +29,16 @@ import Star from './star';
 
 // Send star positions along with the background
 // create the background
-let background_sprite1 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
-let background_sprite2 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
-let background_sprite3 = Sprite(Bg_sprite(canvas, Star.getStarPositions()));
+let background_sprite1 = Sprite(Bg_sprite(Star.getStarPositions()));
+let background_sprite2 = Sprite(Bg_sprite(Star.getStarPositions()));
+let background_sprite3 = Sprite(Bg_sprite(Star.getStarPositions()));
 // the second background should start from where the first background ends
 background_sprite2.y = 0;
 // the third background should start from where the second background ends
 background_sprite3.y = canvas.height;
 
 // create the player
-let player_sprite = Sprite(Player_sprite(canvas));
+let player_sprite = Sprite(Player_sprite());
 // clamp sprites movement to the game between x1, y1, and x2, y2
 player_sprite.position.clamp(0, 0, canvas.width - player_sprite.width, canvas.height - player_sprite.height);
 

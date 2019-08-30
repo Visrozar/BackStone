@@ -2,7 +2,9 @@ import { keyPressed } from 'kontra';
 import Rewind from './rewind';
 import initialValues from './initialValues';
 
-export default function bg_sprite(canvas, stars) {
+let canvas = initialValues.canvas;
+
+export default function bg_sprite(stars) {
     return {
         x: 0,
         y: -canvas.height,
@@ -71,7 +73,6 @@ export default function bg_sprite(canvas, stars) {
                 var drawNewGraph = function () {
                     drawCircle('white', 15, 100 / 100);
                     drawCircle(gradient, 15, rewind_length / 100);
-                    console.log(rewind_length);
                 };
                 drawNewGraph();
             }
