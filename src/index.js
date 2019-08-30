@@ -43,7 +43,7 @@ player_sprite.position.clamp(0, 0, canvas.width - player_sprite.width, canvas.he
 
 // initiate obstacle factory
 let obstacle_factory = new ObstacleFactory(canvas.width, canvas.height);
-// create obstacle
+// create obstacle for test
 let obstacle = obstacle_factory.create_obstacle(player_sprite.x, player_sprite.y);
 
 // prevent default key behavior
