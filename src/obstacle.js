@@ -42,11 +42,46 @@ export default class Obstacle extends Sprite.class {
         this.dx = 0;
         this.dy = initialValues.backgroundSpeed;
 
+        this.rotation = Math.random() * 4.71239;
+        this.anchor = {x: 0.5, y: 0.5}
+
     };
 
     // Todo remove
     get_colours() {
         return ['red', 'yellow', 'blue']
+    }
+
+
+    //draw
+    draw() {
+        this.context.beginPath();
+        this.context.fillStyle = 'darkgrey';
+        this.context.moveTo(this.x, this.y);
+        this.context.lineTo(this.x + 6, this.y - 14);
+        this.context.lineTo(this.x + 22, this.y - 34);
+        this.context.lineTo(this.x + 44, this.y -28);
+        this.context.lineTo(this.x + 66, this.y);
+        this.context.lineTo(this.x + 44, this.y + 20);
+        this.context.lineTo(this.x + 22, this.y + 14);
+        this.context.lineTo(this.x, this.y);
+        this.context.fill();
+        this.context.stroke();
+
+        this.context.beginPath();
+        this.context.fillStyle = 'grey';
+        this.context.arc(this.x + 28, this.y - 15, 5, 0*Math.PI, 1.8*Math.PI);
+        this.context.stroke();
+
+        this.context.beginPath();
+        this.context.arc(this.x + 30, this.y + 5, 3, 0*Math.PI, 1.5*Math.PI);
+        this.context.stroke();
+
+        this.context.beginPath();
+        this.context.arc(this.x + 52, this.y + 2, 2, 0*Math.PI, 1*Math.PI);
+        this.context.stroke();
+
+        //this.context.rotate(this.rotation);
     }
 
 };
