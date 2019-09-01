@@ -1,5 +1,6 @@
 import { Sprite } from 'kontra';
 import initialValues from './initialValues';
+import * as themes from './obstacleTheme'
 
 export default class Obstacle extends Sprite.class {
 
@@ -16,7 +17,7 @@ export default class Obstacle extends Sprite.class {
             this.x = Math.floor(Math.random() * (initialValues.canvas.width + 20) - 10);
 
             //  to left & right of canvas, y -> -10 to 0.7 * canvasheight
-            if((this.x >= -10 && this.x < 0) || this.x > initialValues.canvas.width){ 
+            if((this.x >= -10 && this.x < 0) || this.x > initialValues.canvas.width){
                 this.y = Math.floor(Math.random() * (0.7*initialValues.canvas.height + 10) - 10);
             }
             else {
@@ -26,6 +27,10 @@ export default class Obstacle extends Sprite.class {
 
             var availableColors = this.get_colours();
             this.color = availableColors[Math.floor(Math.random() * availableColors.length)];
+
+            //select one of the available moving themes
+            var randomTheme = themes.movingThemes.keys[Math.floor(Math.random() * themes.movingThemes.keys.length)]
+            this.theme = themes.movingThemes.randomTheme;
 
         }
         else{
@@ -43,7 +48,6 @@ export default class Obstacle extends Sprite.class {
         this.dy = initialValues.backgroundSpeed;
 
         this.rotation = Math.random() * 4.71239;
-        this.anchor = {x: 0.5, y: 0.5}
 
     };
 
@@ -55,32 +59,12 @@ export default class Obstacle extends Sprite.class {
 
     //draw
     draw() {
-        this.context.beginPath();
-        this.context.fillStyle = 'darkgrey';
-        this.context.moveTo(this.x, this.y);
-        this.context.lineTo(this.x + 6, this.y - 14);
-        this.context.lineTo(this.x + 22, this.y - 34);
-        this.context.lineTo(this.x + 44, this.y -28);
-        this.context.lineTo(this.x + 66, this.y);
-        this.context.lineTo(this.x + 44, this.y + 20);
-        this.context.lineTo(this.x + 22, this.y + 14);
-        this.context.lineTo(this.x, this.y);
-        this.context.fill();
-        this.context.stroke();
-
-        this.context.beginPath();
-        this.context.fillStyle = 'grey';
-        this.context.arc(this.x + 28, this.y - 15, 5, 0*Math.PI, 1.8*Math.PI);
-        this.context.stroke();
-
-        this.context.beginPath();
-        this.context.arc(this.x + 30, this.y + 5, 3, 0*Math.PI, 1.5*Math.PI);
-        this.context.stroke();
-
-        this.context.beginPath();
-        this.context.arc(this.x + 52, this.y + 2, 2, 0*Math.PI, 1*Math.PI);
-        this.context.stroke();
-
+      if (this.theme){
+        this.theme(this.context);
+      }
+      else {
+        super.draw();
+      }
         //this.context.rotate(this.rotation);
     }
 

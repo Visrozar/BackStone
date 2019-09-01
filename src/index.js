@@ -61,17 +61,17 @@ let loop = GameLoop({
     background_sprite2.update();
     background_sprite3.update();
     // for looping background
-    if (background_sprite1.y == 0) {
+    if (background_sprite1.y >= canvas.height) {
       // once background 1 reaches bottom, start moving background 2 and reposition background 1
-      background_sprite3.y = -canvas.height;
-    }
-    if (background_sprite2.y == 0) {
-      // once background 2 reaches bottom, start moving background 1 and reposition background 2
       background_sprite1.y = -canvas.height;
     }
-    if (background_sprite3.y == 0) {
+    if (background_sprite2.y >= canvas.height) {
       // once background 2 reaches bottom, start moving background 1 and reposition background 2
       background_sprite2.y = -canvas.height;
+    }
+    if (background_sprite3.y >= canvas.height) {
+      // once background 2 reaches bottom, start moving background 1 and reposition background 2
+      background_sprite3.y = -canvas.height;
     }
     player_sprite.update();
     score = score + dt;
