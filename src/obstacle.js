@@ -1,13 +1,13 @@
 import { Sprite } from 'kontra';
 import initialValues from './initialValues';
-import * as themes from './obstacleTheme'
+import themes from './obstacleTheme'
 
 export default class Obstacle extends Sprite.class {
 
     constructor(isStationary){
 
         super();
-
+        this.isShootingStar = false;
         this.width = Math.floor(Math.random() * (40 - 20 + 1) + 20);
         this.height = Math.floor(Math.random() * (40 - 20 + 1) + 20);
 
@@ -24,48 +24,57 @@ export default class Obstacle extends Sprite.class {
                 // in canvas , y -> -10 to 0
                 this.y = -this.height - 10;
             }
+            //colour
+            this.color = initialValues.colors[Math.floor(Math.random() * initialValues.colors.length)];
 
-            var availableColors = this.get_colours();
-            this.color = availableColors[Math.floor(Math.random() * availableColors.length)];
-
+            //probability of shooting start is 10%
+            if(Math.random() <= 0.1){
+              this.theme = themes.shooting_star;
+              this.isShootingStar = true;
+            }
             //select one of the available moving themes
-            var randomTheme = themes.movingThemes.keys[Math.floor(Math.random() * themes.movingThemes.keys.length)]
-            this.theme = themes.movingThemes.randomTheme;
-
+            else{
+              var availableThemes = Object.keys(themes.movingThemes);
+              this.theme = themes.movingThemes[availableThemes[Math.floor(Math.random()*availableThemes.length)]];
+            }
         }
         else{
 
-            this.width = this.width * 2;
-            this.height = this.height * 2;
-            this.color = 'white';
+            this.width = this.width * 1.5;
+            this.height = this.height * 1.5;
             // stationary object will be inside canvas
             this.x = Math.floor(Math.random() * initialValues.canvas.width);
             this.y = -this.height - 10;
+
+            //colour
+            var index = Math.floor(Math.random() * initialValues.colors.length);
+            this.color = initialValues.colors[index];
+            if(Math.random() <= 0.3){
+              this.otherColor = 'white';
+            } else {
+              var otherColors = initialValues.colors.slice();
+              otherColors.splice(index,1);
+              this.otherColor = otherColors[Math.floor(Math.random() * otherColors.length)];
+            }
+
+            //select one of the available stationary themes
+            var availableThemes = Object.keys(themes.stationaryThemes);
+            this.theme = themes.stationaryThemes[availableThemes[Math.floor(Math.random()*availableThemes.length)]];
         }
 
         // initial velocity is zero
         this.dx = 0;
         this.dy = initialValues.backgroundSpeed;
 
-        this.rotation = Math.random() * 4.71239;
+        if(!this.isShootingStar){
+          this.rotation = Math.random() * 4.71239;
+        }
 
     };
 
-    // Todo remove
-    get_colours() {
-        return ['red', 'yellow', 'blue']
-    }
-
-
     //draw
     draw() {
-      if (this.theme){
-        this.theme(this.context);
-      }
-      else {
-        super.draw();
-      }
-        //this.context.rotate(this.rotation);
+        this.theme();
     }
 
 };
