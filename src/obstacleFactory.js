@@ -1,8 +1,7 @@
 import Obstacle from './obstacle';
-import initialValues from './initialValues';
 
 export default class ObstacleFactory {
-    
+
     constructor(){
     }
 
@@ -10,23 +9,24 @@ export default class ObstacleFactory {
 
         var isStationary = false;
 
-        // assuming moving obstacles probabilty to be 70%
+        // assuming moving obstacles probabilty to be 80%
         var obstacleProbability = Math.random();
-        if ( obstacleProbability >= 0.701 ){
+        if ( obstacleProbability >= 0.801 ){
             isStationary = true
         }
 
-        var obstacle = new Obstacle(initialValues.canvas.width,initialValues.canvas.height,isStationary);
-        
+        var obstacle = new Obstacle(isStationary);
+
+        var theta = Math.atan((obstacle.x-playerX)/(playerY-obstacle.y));
+
         if( !isStationary ){
             //add velocity according to spawn
-            var theta = Math.atan((obstacle.x-playerX)/(playerY-obstacle.y));
 
             // -90 to -45 , x +fast, y -slow
             if ( theta > -0.785398 && theta <= -1.5708 ){
                 //obstacle.rotation = Math.random() * 1.5708;
                 obstacle.dx = (Math.random()*(3.5 - 1.8) + 1.8);
-                obstacle.dy = (Math.random()*(-0.6 + 1) - 1) - 1; 
+                obstacle.dy = (Math.random()*(-0.6 + 1) - 1) - 1;
             }
             // -45 to 0 , x +med, y +med
             else if ( theta >= -0.785398 && theta <= 0){
@@ -46,10 +46,19 @@ export default class ObstacleFactory {
                 obstacle.dx = (Math.random()*(-1.8 + 3.5) - 3.5);
                 obstacle.dy = (Math.random()*(-0.6 + 1) - 1);
             }
-        } 
+        }
+
+        if(obstacle.isShootingStar){
+          obstacle.dx = obstacle.dx * 2;
+          obstacle.dy = obstacle.dy * 2;
+          obstacle.rotation = Math.atan(Math.abs(obstacle.dy)/Math.abs(obstacle.dx));
+          if (theta > 0){
+            obstacle.rotation = Math.PI - obstacle.rotation;
+          }
+        }
 
         return obstacle;
 
     };
 
-}; 
+};
