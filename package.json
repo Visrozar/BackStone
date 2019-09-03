@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "build": "webpack",
-    "watch": "webpack --watch --progress"
+    "start": "webpack --watch --progress"
   },
   "keywords": [
     "game",
