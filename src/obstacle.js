@@ -31,35 +31,47 @@ export default class Obstacle extends Sprite.class {
             if(Math.random() <= 0.1){
               this.theme = themes.shooting_star;
               this.isShootingStar = true;
+              this.collider = 'shooting_star';
             }
             //select one of the available moving themes
             else{
               var availableThemes = Object.keys(themes.movingThemes);
               this.theme = themes.movingThemes[availableThemes[Math.floor(Math.random()*availableThemes.length)]];
+              this.collider = 'asteroid';
             }
         }
         else{
 
-            this.width = this.width * 1.5;
-            this.height = this.height * 1.5;
             // stationary object will be inside canvas
             this.x = Math.floor(Math.random() * initialValues.canvas.width);
-            this.y = -this.height - 10;
+            this.y = -this.height - 10
 
-            //colour
-            var index = Math.floor(Math.random() * initialValues.colors.length);
-            this.color = initialValues.colors[index];
             if(Math.random() <= 0.3){
-              this.otherColor = 'white';
-            } else {
-              var otherColors = initialValues.colors.slice();
-              otherColors.splice(index,1);
-              this.otherColor = otherColors[Math.floor(Math.random() * otherColors.length)];
+                this.width = 12;
+                this.height = 12;
+                this.theme  = themes.backstone;
+                this.collider = 'backstone';
             }
+            else {
+                this.width = this.width * 1.5;
+                this.height = this.height * 1.5;;
 
-            //select one of the available stationary themes
-            var availableThemes = Object.keys(themes.stationaryThemes);
-            this.theme = themes.stationaryThemes[availableThemes[Math.floor(Math.random()*availableThemes.length)]];
+                //colour
+                var index = Math.floor(Math.random() * initialValues.colors.length);
+                this.color = initialValues.colors[index];
+                if(Math.random() <= 0.3){
+                this.otherColor = 'white';
+                } else {
+                var otherColors = initialValues.colors.slice();
+                otherColors.splice(index,1);
+                this.otherColor = otherColors[Math.floor(Math.random() * otherColors.length)];
+                }
+
+                //select one of the available stationary themes
+                var availableThemes = Object.keys(themes.stationaryThemes);
+                this.theme = themes.stationaryThemes[availableThemes[Math.floor(Math.random()*availableThemes.length)]];
+                this.collider = 'planet';
+            }
         }
 
         // initial velocity is zero

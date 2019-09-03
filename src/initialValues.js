@@ -11,6 +11,7 @@ class initialValues {
         this.backgroundSpeed = 4;
         this.colors = ['#DCE775', '#4DD0E1', '#B3E5FC', '#5C6BC0', '#CE93D8',
                       '#ef9a9a','#F06292','#FFF59D','#FFB74D','#FFAB91'];
+        this.stoneShadow = [5,15,25];
     }
 }
 

@@ -223,6 +223,30 @@ export default {
 
     }
 
+  },
+
+  'backstone': function() {
+    this.context.save();
+    this.context.translate(this.viewX,this.viewY);
+
+    let backStoneGradient = this.context.createLinearGradient(-12,0,12,0);
+    backStoneGradient.addColorStop(0,'#D1C4E9');
+    backStoneGradient.addColorStop(0.5,'#7E57C2');
+    backStoneGradient.addColorStop(1,'#3949AB');
+
+    this.context.beginPath();
+    this.context.moveTo(-12,-3);
+    this.context.quadraticCurveTo(-1,-7,0,-12);
+    this.context.lineTo(12,-3);
+    this.context.lineTo(0,12);
+    this.context.lineTo(-12,-3);
+    this.context.fillStyle = backStoneGradient;
+    this.context.shadowColor = 'white';
+    this.context.shadowBlur = initialValues.stoneShadow[Math.floor(Math.random()*initialValues.stoneShadow.length)];
+    this.context.fill();
+
+    this.context.restore();
+
   }
 
 }
