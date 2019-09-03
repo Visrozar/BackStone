@@ -27,7 +27,7 @@ export default {
       this.context.stroke();
 
       this.context.beginPath();
-      this.context.arc(30, 5, 3, 0*, 1.5*Math.PI);
+      this.context.arc(30, 5, 3, 0, 1.5*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
@@ -170,7 +170,7 @@ export default {
       this.context.arc(0,0,this.width,0,2*Math.PI);
       this.context.fill();
       this.context.restore();
-    }
+    },
 
     'planet2': function(){
 
