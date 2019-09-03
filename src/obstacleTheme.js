@@ -22,15 +22,23 @@ export default {
       this.context.fill();
 
       this.context.beginPath();
-      this.context.fillStyle = 'grey';
+      this.context.strokeStyle = 'grey';
+      this.context.lineCap = 'butt';
+      this.context.lineWidth = 3;
       this.context.arc(28, -15, 5, 0, 1.8*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
+      this.context.lineCap = 'butt';
+      this.context.strokeStyle = 'grey';
+      this.context.lineWidth = 3;
       this.context.arc(30, 5, 3, 0, 1.5*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
+      this.context.lineCap = 'butt';
+      this.context.strokeStyle = 'grey';
+      this.context.lineWidth = 3;
       this.context.arc(52, 2, 2, 0, Math.PI);
       this.context.stroke();
 
@@ -58,19 +66,28 @@ export default {
       this.context.fill();
 
       this.context.beginPath();
-      this.context.fillStyle = 'grey';
+      this.context.lineCap = 'butt';
+      this.context.strokeStyle = 'grey';
+      this.context.lineWidth = 3;
       this.context.arc(-14, 15, 5, 0, 1.8*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
+      this.context.lineCap = 'butt';
+      this.context.strokeStyle = 'grey';
+      this.context.lineWidth = 3;
       this.context.arc(6, 25, 6, 0, 1.5*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
+      this.context.fillStyle = 'grey';
       this.context.arc(32, 25, 10, 0, 1.5*Math.PI);
       this.context.fill();
 
       this.context.beginPath();
+      this.context.lineCap = 'butt';
+      this.context.strokeStyle = 'grey';
+      this.context.lineWidth = 3;
       this.context.arc(52, 2, 2, 0, Math.PI);
       this.context.stroke();
 
@@ -103,19 +120,26 @@ export default {
       this.context.fill();
 
       this.context.beginPath();
-      this.context.fillStyle = 'grey';
+      this.context.lineCap = 'butt';
+      this.context.strokeStyle = 'grey';
+      this.context.lineWidth = 3;
       this.context.arc(18, 2, 6, 0.3*Math.PI, 1.4*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
+      this.context.fillStyle = 'grey';
       this.context.arc(48, -4, 6, 0.2*Math.PI, 1.7*Math.PI);
       this.context.fill();
 
       this.context.beginPath();
+      this.context.fillStyle = 'grey';
       this.context.arc(36, -14, 6, 0.7*Math.PI, 2*Math.PI);
       this.context.fill();
 
       this.context.beginPath();
+      this.context.lineCap = 'butt';
+      this.context.strokeStyle = 'grey';
+      this.context.lineWidth = 3;
       this.context.arc(72, 10, 6, Math.PI, 1.75*Math.PI);
       this.context.stroke();
 
