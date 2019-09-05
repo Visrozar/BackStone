@@ -85,25 +85,7 @@ let loop = GameLoop({
       obstacle.update();
     })
 
-    //stop spwaning obstacles at 90
-    if( initialValues.score >= 90 && initialValues <= 100 && initialValues.spawnObstacle){
-      initialValues.spawnObstacle = false;
-    }
-    
-    //start meteor shower at 100
-    if( initialValues.score >= 100 && !meteor_shower.alive){
-      meteor_shower.startMeteorShower();
-      obstacles = [];
-    }
-
-    //update meteor shower
-    meteor_shower.update();
-
-    //stop meteor shower at 130
-    if( initialValues.score > 130 && meteor_shower.alive){
-      meteor_shower.stopMeteorShower();
-      initialValues.spawnObstacle = false;
-    }
+    meteor_shower.commence();
 
     // probability of spawning new obstacle is 0.03%
     if(initialValues.spawnObstacle){
@@ -126,9 +108,7 @@ let loop = GameLoop({
     });
 
     //rendor meteor shower
-    if(meteor_shower.alive){
-      meteor_shower.render();
-    }
+    meteor_shower.render();
   }
 });
 

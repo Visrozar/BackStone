@@ -254,20 +254,23 @@ export default {
     this.context.translate(this.viewX,this.viewY);
 
     this.context.beginPath();
-    this.context.arc(150,75,50,0.3*Math.PI,0.7*Math.PI);
-    this.context.bezierCurveTo(100,90,120,75,Math.random()*(122-118)+118,60);
+    this.context.arc(150,75,47,0.3*Math.PI,0.7*Math.PI);
+    this.context.bezierCurveTo(105,90,120,75,Math.random()*(124-116)+116,60);
     this.context.lineTo(130,80);
-    this.context.lineTo(Math.random()*(127-123)+123,40);
+    this.context.lineTo(Math.random()*(129-121)+121,40);
     this.context.lineTo(140,60);
-    this.context.lineTo(150,Math.random()*5);
+    this.context.lineTo(150,Math.random()*8);
     this.context.lineTo(160,60);
-    this.context.lineTo(Math.random()*(177-173)+173,40);
+    this.context.lineTo(Math.random()*(179-171)+171,40);
     this.context.lineTo(170,80);
-    var rightx = Math.random()*(182-178)+178;
+    var rightx = Math.random()*(184-176)+176;
     this.context.lineTo(rightx,60);
-    this.context.bezierCurveTo(rightx,75,200,90,179,116);
+    this.context.bezierCurveTo(rightx,75,195,90,175,116);
     this.context.fillStyle = '#FFD54F';
     this.context.fill();
+
+    this.context.lineCap = "butt";
+    this.context.lineWidth = 1;
 
     this.context.beginPath();
     this.context.arc(150,100,18,0,2*Math.PI);
