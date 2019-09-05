@@ -2,7 +2,6 @@ import { Sprite, GameLoop, initKeys, bindKeys } from 'kontra';
 import initialValues from './initialValues';
 
 let backStones = initialValues.backStones;
-let score = initialValues.score;
 let canvas = initialValues.canvas;
 
 // gameMenu initialization
@@ -74,8 +73,8 @@ let loop = GameLoop({
       background_sprite2.y = -canvas.height;
     }
     player_sprite.update();
-    score = score + dt;
-    document.getElementById('score').innerHTML = parseInt(score);
+    initialValues.score = initialValues.score + dt;
+    document.getElementById('score').innerHTML = parseInt(initialValues.score);
     document.getElementById('backStones').innerHTML = parseInt(backStones + 1);
 
     //update each obstacle
