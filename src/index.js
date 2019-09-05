@@ -1,5 +1,6 @@
 import { Sprite, GameLoop, initKeys, bindKeys } from 'kontra';
 import initialValues from './initialValues';
+import MeteorShower from './meteorShower';
 
 let backStones = initialValues.backStones;
 let score = initialValues.score;
@@ -47,6 +48,8 @@ let obstacle_factory = new ObstacleFactory();
 //array of active obstacles
 let obstacles = [];
 
+//initiate Meteor shower
+let meteor_shower = new MeteorShower();
 
 // prevent default key behavior
 bindKeys(['left', 'right', 'up', 'down'], function (e) {
@@ -82,12 +85,35 @@ let loop = GameLoop({
     obstacles.forEach(function(obstacle){
       obstacle.update();
     })
+
+    //stop spwaning obstacles at 90
+    if( initialValues.score >= 90 && initialValues <= 100 && initialValues.spawnObstacle){
+      initialValues.spawnObstacle = false;
+    }
+    
+    //start meteor shower at 100
+    if( initialValues.score >= 100 && !meteor_shower.alive){
+      meteor_shower.startMeteorShower();
+      obstacles = [];
+    }
+
+    //update meteor shower
+    meteor_shower.update();
+
+    //stop meteor shower at 130
+    if( initialValues.score > 130 && meteor_shower.alive){
+      meteor_shower.stopMeteorShower();
+      initialValues.spawnObstacle = false;
+    }
+
     // probability of spawning new obstacle is 0.03%
-    if(Math.random() <= 0.03){
-      if (obstacles.length == 15){
-        obstacles.shift();
+    if(initialValues.spawnObstacle){
+      if( Math.random() <= 0.03){
+        if (obstacles.length == 15){
+          obstacles.shift();
+        }
+        obstacles.push(obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y));
       }
-      obstacles.push(obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y));
     }
   },
   render: function () {
@@ -98,7 +124,12 @@ let loop = GameLoop({
     //render all obstacles
     obstacles.forEach(function(obstacle){
       obstacle.render();
-    })
+    });
+
+    //rendor meteor shower
+    if(meteor_shower.alive){
+      meteor_shower.render();
+    }
   }
 });
 

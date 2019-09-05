@@ -247,6 +247,56 @@ export default {
 
     this.context.restore();
 
+  },
+
+  'meteor_shower': function() {
+    this.context.save();
+    this.context.translate(this.viewX,this.viewY);
+
+    this.context.beginPath();
+    this.context.arc(150,75,50,0.3*Math.PI,0.7*Math.PI);
+    this.context.bezierCurveTo(100,90,120,75,Math.random()*(122-118)+118,60);
+    this.context.lineTo(130,80);
+    this.context.lineTo(Math.random()*(127-123)+123,40);
+    this.context.lineTo(140,60);
+    this.context.lineTo(150,Math.random()*5);
+    this.context.lineTo(160,60);
+    this.context.lineTo(Math.random()*(177-173)+173,40);
+    this.context.lineTo(170,80);
+    var rightx = Math.random()*(182-178)+178;
+    this.context.lineTo(rightx,60);
+    this.context.bezierCurveTo(rightx,75,200,90,179,116);
+    this.context.fillStyle = '#FFD54F';
+    this.context.fill();
+
+    this.context.beginPath();
+    this.context.arc(150,100,18,0,2*Math.PI);
+    this.context.fillStyle = '#A1887F';
+    this.context.fill();
+
+    this.context.beginPath();
+    this.context.arc(140,100,3,0,1.2*Math.PI);
+    this.context.strokeStyle = '#5D4037';
+    this.context.stroke();
+
+    this.context.beginPath();
+    this.context.arc(160,105,4,0,0.8*Math.PI);
+    this.context.strokeStyle = '#5D4037';
+    this.context.stroke();
+
+    this.context.beginPath();
+    this.context.arc(155,93,3,0,1.8*Math.PI);
+    this.context.strokeStyle = '#5D4037';
+    this.context.stroke();
+
+    this.context.beginPath();
+    this.context.arc(150,96,22,1.7*Math.PI,1.3*Math.PI);
+    this.context.quadraticCurveTo(145,80,150,60);
+    this.context.quadraticCurveTo(155,80,163,78);
+    this.context.fillStyle = 'rgba(255,138,101,0.5)';
+    this.context.fill();
+
+    this.context.restore();
   }
 
 }
