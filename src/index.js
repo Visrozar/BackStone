@@ -1,5 +1,6 @@
 import { Sprite, GameLoop, initKeys, bindKeys } from 'kontra';
 import initialValues from './initialValues';
+import MeteorShower from './meteorShower';
 
 let backStones = initialValues.backStones;
 let canvas = initialValues.canvas;
@@ -46,6 +47,8 @@ let obstacle_factory = new ObstacleFactory();
 //array of active obstacles
 let obstacles = [];
 
+//initiate Meteor shower
+let meteor_shower = new MeteorShower();
 
 // prevent default key behavior
 bindKeys(['left', 'right', 'up', 'down'], function (e) {
@@ -81,12 +84,17 @@ let loop = GameLoop({
     obstacles.forEach(function(obstacle){
       obstacle.update();
     })
+
+    meteor_shower.commence();
+
     // probability of spawning new obstacle is 0.03%
-    if(Math.random() <= 0.03){
-      if (obstacles.length == 15){
-        obstacles.shift();
+    if(initialValues.spawnObstacle){
+      if( Math.random() <= 0.03){
+        if (obstacles.length == 15){
+          obstacles.shift();
+        }
+        obstacles.push(obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y));
       }
-      obstacles.push(obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y));
     }
   },
   render: function () {
@@ -97,7 +105,10 @@ let loop = GameLoop({
     //render all obstacles
     obstacles.forEach(function(obstacle){
       obstacle.render();
-    })
+    });
+
+    //rendor meteor shower
+    meteor_shower.render();
   }
 });
 

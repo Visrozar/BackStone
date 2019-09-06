@@ -223,6 +223,83 @@ export default {
 
     }
 
+  },
+
+  'backstone': function() {
+    this.context.save();
+    this.context.translate(this.viewX,this.viewY);
+
+    let backStoneGradient = this.context.createLinearGradient(-12,0,12,0);
+    backStoneGradient.addColorStop(0,'#D1C4E9');
+    backStoneGradient.addColorStop(0.5,'#7E57C2');
+    backStoneGradient.addColorStop(1,'#3949AB');
+
+    this.context.beginPath();
+    this.context.moveTo(-12,-3);
+    this.context.quadraticCurveTo(-1,-7,0,-12);
+    this.context.lineTo(12,-3);
+    this.context.lineTo(0,12);
+    this.context.lineTo(-12,-3);
+    this.context.fillStyle = backStoneGradient;
+    this.context.shadowColor = 'white';
+    this.context.shadowBlur = initialValues.stoneShadow[Math.floor(Math.random()*initialValues.stoneShadow.length)];
+    this.context.fill();
+
+    this.context.restore();
+
+  },
+
+  'meteor_shower': function() {
+    this.context.save();
+    this.context.translate(this.viewX,this.viewY);
+
+    this.context.beginPath();
+    this.context.arc(150,75,47,0.3*Math.PI,0.7*Math.PI);
+    this.context.bezierCurveTo(105,90,120,75,Math.random()*(124-116)+116,60);
+    this.context.lineTo(130,80);
+    this.context.lineTo(Math.random()*(129-121)+121,40);
+    this.context.lineTo(140,60);
+    this.context.lineTo(150,Math.random()*8);
+    this.context.lineTo(160,60);
+    this.context.lineTo(Math.random()*(179-171)+171,40);
+    this.context.lineTo(170,80);
+    var rightx = Math.random()*(184-176)+176;
+    this.context.lineTo(rightx,60);
+    this.context.bezierCurveTo(rightx,75,195,90,175,116);
+    this.context.fillStyle = '#FFD54F';
+    this.context.fill();
+
+    this.context.lineCap = "butt";
+    this.context.lineWidth = 1;
+
+    this.context.beginPath();
+    this.context.arc(150,100,18,0,2*Math.PI);
+    this.context.fillStyle = '#A1887F';
+    this.context.fill();
+
+    this.context.beginPath();
+    this.context.arc(140,100,3,0,1.2*Math.PI);
+    this.context.strokeStyle = '#5D4037';
+    this.context.stroke();
+
+    this.context.beginPath();
+    this.context.arc(160,105,4,0,0.8*Math.PI);
+    this.context.strokeStyle = '#5D4037';
+    this.context.stroke();
+
+    this.context.beginPath();
+    this.context.arc(155,93,3,0,1.8*Math.PI);
+    this.context.strokeStyle = '#5D4037';
+    this.context.stroke();
+
+    this.context.beginPath();
+    this.context.arc(150,96,22,1.7*Math.PI,1.3*Math.PI);
+    this.context.quadraticCurveTo(145,80,150,60);
+    this.context.quadraticCurveTo(155,80,163,78);
+    this.context.fillStyle = 'rgba(255,138,101,0.5)';
+    this.context.fill();
+
+    this.context.restore();
   }
 
 }
