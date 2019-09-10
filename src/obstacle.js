@@ -15,6 +15,9 @@ export default class Obstacle extends Sprite.class {
         // required for moving back in time
         this.rewind = new Rewind;
 
+        // collision logic
+        this.collidesWith = collidesWith;
+        // this.anchor = { x: 0.5, y: 0.5 };
         if (!isStationary) {
             // spawn out of canvas
             //random Int from interval = Math.floor(Math.random() * (max - min) + min); // considering -10 to width + 10
@@ -59,7 +62,7 @@ export default class Obstacle extends Sprite.class {
             }
             else {
                 this.width = this.width * 1.5;
-                this.height = this.height * 1.5;;
+                this.height = this.height * 1.5;
 
                 //colour
                 var index = Math.floor(Math.random() * initialValues.colors.length);
@@ -112,3 +115,11 @@ export default class Obstacle extends Sprite.class {
     };
 
 };
+
+// circle collision
+function collidesWith(object) {
+    let dx = this.x - object.x;
+    let dy = this.y - object.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+    return distance < this.width + object.width;
+}

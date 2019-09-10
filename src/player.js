@@ -1,10 +1,29 @@
-import { keyPressed } from 'kontra';
+import { Sprite, keyPressed } from 'kontra';
 import Rewind from './rewind';
 import initialValues from './initialValues';
 
 let canvas = initialValues.canvas;
 
 export default function player_sprite() {
+
+    let displayGameOver = function () {
+        this.context.lineCap = "round";
+        this.context.lineJoin = "round";
+        this.context.lineWidth = 15;
+        let gradient = this.context.createLinearGradient(0, 0, initialValues.canvas.width, 0);
+        gradient.addColorStop("0", " magenta");
+        gradient.addColorStop("0.5", "blue");
+        gradient.addColorStop("1.0", "red");
+        // Fill with gradient
+        this.context.strokeStyle = gradient;
+        this.context.fillStyle = gradient;
+        this.context.font = initialValues.canvas.width / 40 + "px Verdana";
+        let width = initialValues.canvas.width * 0.5;
+        let height = initialValues.canvas.height * 0.15;
+        this.context.fillText("GAME OVER!", initialValues.canvas.width / 2 - width / 2 + 50, initialValues.canvas.height / 2 + 5);
+        this.context.rect(initialValues.canvas.width / 2 - width / 2, initialValues.canvas.height / 2 - height / 2, width, height);
+        this.context.stroke();
+    }
     return {
         x: canvas.width / 2,
         y: canvas.height * 4 / 5,
@@ -16,6 +35,22 @@ export default function player_sprite() {
         width: canvas.width / 60,
         height: canvas.width / 40,
         color: 'blue',
+        destroy: false,
+
+        // game over text
+        gameOver: Sprite({
+            width: 200,
+            height: 100,
+
+            x: initialValues.canvas.width / 2 - 100,
+            y: initialValues.canvas.width / 2 - 500,
+
+            dx: 0,
+            dy: initialValues.backgroundSpeed,
+
+            render: displayGameOver
+
+        }),
 
         // required for moving back in time
         rewind: new Rewind,
@@ -46,30 +81,42 @@ export default function player_sprite() {
             }
         },
         render: function () {
-            // draw thruster behind the ship
-            this.fillStyle = this.fillStyle == 'yellow' ? 'red' : 'yellow';
-            this.context.fillStyle = this.fillStyle;
-            this.context.beginPath();
-            this.context.arc(this.x + this.width / 2, this.y + this.height, Math.random() * 6, 0, 2 * Math.PI);
-            this.context.fill();
+            if (this.destroy) {
+                // draw thruster behind the ship
+                this.fillStyle = this.fillStyle == 'yellow' ? 'red' : 'yellow';
+                this.context.fillStyle = this.fillStyle;
+                this.context.beginPath();
+                this.context.arc(this.x + this.width / 2, this.y + this.height, Math.random() * 6, 0, 2 * Math.PI);
+                this.context.fill();
 
-            // draw the ship
-            this.draw();
+                this.gameOver.render();
+            } else {
+                // draw thruster behind the ship
+                this.fillStyle = this.fillStyle == 'yellow' ? 'red' : 'yellow';
+                this.context.fillStyle = this.fillStyle;
+                this.context.beginPath();
+                this.context.arc(this.x + this.width / 2, this.y + this.height, Math.random() * 6, 0, 2 * Math.PI);
+                this.context.fill();
 
-            // draw the conical top of the ship
-            this.context.beginPath();
-            this.context.moveTo(this.x, this.y);
-            this.context.lineTo(this.x + this.width / 2, this.y - 5);
-            this.context.lineTo(this.x + this.width, this.y);
-            this.context.lineTo(this.x, this.y);
-            this.context.fillStyle = this.color;
-            this.context.fill();
+                // draw the ship
+                this.draw();
 
-            // draw the window
-            this.context.fillStyle = 'white';
-            this.context.beginPath();
-            this.context.arc(this.x + this.width / 2, this.y + this.height / 3, 2, 0, 2 * Math.PI);
-            this.context.fill();
+                // draw the conical top of the ship
+                this.context.beginPath();
+                this.context.moveTo(this.x, this.y);
+                this.context.lineTo(this.x + this.width / 2, this.y - 5);
+                this.context.lineTo(this.x + this.width, this.y);
+                this.context.lineTo(this.x, this.y);
+                this.context.fillStyle = this.color;
+                this.context.fill();
+
+                // draw the window
+                this.context.fillStyle = 'white';
+                this.context.beginPath();
+                this.context.arc(this.x + this.width / 2, this.y + this.height / 3, 2, 0, 2 * Math.PI);
+                this.context.fill();
+            }
+
         }
     }
 }

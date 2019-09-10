@@ -1,6 +1,6 @@
 import { Sprite, getContext } from "kontra";
 import initialValues from './initialValues';
-import themes from './obstacleTheme'; 
+import themes from './obstacleTheme';
 
 class MeteorShower {
     constructor() {
@@ -17,7 +17,7 @@ class MeteorShower {
             width: 200,
             height: 100,
 
-            x: initialValues.canvas.width/2-100,
+            x: initialValues.canvas.width / 2 - 100,
             y: initialValues.canvas.width / 2 - 500,
 
             dx: 0,
@@ -29,8 +29,8 @@ class MeteorShower {
     }
 
     addMeteor() {
-        if(Math.random() <= 0.08){
-            if(this.meteors.length > 10) this.meteors.shift();
+        if (Math.random() <= 0.08) {
+            if (this.meteors.length > 10) this.meteors.shift();
             this.meteors.push(this.getMeteor());
         }
     }
@@ -52,21 +52,26 @@ class MeteorShower {
         })
     }
 
-    update() {
-        if(this.spawn) this.addMeteor();
-        this.meteors.forEach(function(meteor){
+    update(player_sprite, loop) {
+        if (this.spawn) this.addMeteor();
+        this.meteors.forEach(function (meteor) {
             meteor.update();
+            // check if player collided with meteor
+            if (meteor.collidesWith(player_sprite)) {
+                // console.log('collided with ' + meteor.collider);
+                loop.stop();
+            }
         });
     }
 
     render() {
-        if(this.showWarning){ 
+        if (this.showWarning) {
             this.warning.render();
         }
-        else{
-            if(this.alive){
-                this.meteors.forEach(function(meteor){
-                meteor.render();
+        else {
+            if (this.alive) {
+                this.meteors.forEach(function (meteor) {
+                    meteor.render();
                 })
             }
         }
@@ -74,7 +79,7 @@ class MeteorShower {
 
     stopMeteorShower() {
         this.spawn = false;
-        setTimeout(function(){
+        setTimeout(function () {
             this.meteors = [];
             this.alive = false;
         }.bind(this), 4000);
@@ -85,33 +90,33 @@ class MeteorShower {
         this.spawn = true;
     }
 
-    commence() {
+    commence(player_sprite, loop) {
 
         //substract mulyiple of 100 from score
-        this.meteor_score_check = initialValues.score - Math.floor(initialValues.score/100)*100;
+        this.meteor_score_check = initialValues.score - Math.floor(initialValues.score / 100) * 100;
         //stop spwaning obstacles at  multiples of 90
-        if( (this.meteor_score_check >= this.spawnStopAtScore) && (this.meteor_score_check <= this.startShowerAtScore) && initialValues.spawnObstacle){
+        if ((this.meteor_score_check >= this.spawnStopAtScore) && (this.meteor_score_check <= this.startShowerAtScore) && initialValues.spawnObstacle) {
             initialValues.spawnObstacle = false;
             this.showWarning = true;
-            setTimeout(function(){
+            setTimeout(function () {
                 this.showWarning = false;
-            }.bind(this),4000);
+            }.bind(this), 4000);
         }
-        
+
         //start meteor shower at 100
-        if( (this.meteor_score_check > this.startShowerAtScore) && (this.meteor_score_check <= this.stopShowerAtScore) && !this.alive){
+        if ((this.meteor_score_check > this.startShowerAtScore) && (this.meteor_score_check <= this.stopShowerAtScore) && !this.alive) {
             this.startMeteorShower();
         }
 
         //update meteor shower
-        if( this.alive ) this.update();
+        if (this.alive) this.update(player_sprite, loop);
 
         //stop meteor shower at 130
-        if( (this.meteor_score_check > this.stopShowerAtScore) && this.alive){
+        if ((this.meteor_score_check > this.stopShowerAtScore) && this.alive) {
             this.stopMeteorShower();
         }
 
-        if( (this.meteor_score_check >= this.spawnStartAtScore) && !this.alive){
+        if ((this.meteor_score_check >= this.spawnStartAtScore) && !this.alive) {
             initialValues.spawnObstacle = true;
         }
     }
@@ -128,10 +133,10 @@ class MeteorShower {
         this.context.strokeStyle = gradient;
         this.context.fillStyle = gradient;
         this.context.font = initialValues.canvas.width / 40 + "px Verdana";
-        let width = initialValues.canvas.width*0.5;
-        let height = initialValues.canvas.height*0.15;
-        this.context.fillText("ALERT! METEOR SHOWER INCOMING!", initialValues.canvas.width / 2 - width/2 + 50, initialValues.canvas.height/2 + 5);
-        this.context.rect(initialValues.canvas.width/2-width/2,initialValues.canvas.height/2-height/2,width,height);
+        let width = initialValues.canvas.width * 0.5;
+        let height = initialValues.canvas.height * 0.15;
+        this.context.fillText("ALERT! METEOR SHOWER INCOMING!", initialValues.canvas.width / 2 - width / 2 + 50, initialValues.canvas.height / 2 + 5);
+        this.context.rect(initialValues.canvas.width / 2 - width / 2, initialValues.canvas.height / 2 - height / 2, width, height);
         this.context.stroke();
     }
 }

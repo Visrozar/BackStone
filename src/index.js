@@ -54,6 +54,15 @@ bindKeys(['left', 'right', 'up', 'down'], function (e) {
   e.preventDefault();
 });
 
+let endLoop = GameLoop({
+  update: function (dt) {
+    player_sprite.update();
+  },
+  render: function () {
+    player_sprite.render();
+  }
+});
+
 // use kontra.gameLoop to play the animation
 let loop = GameLoop({
 
@@ -80,11 +89,24 @@ let loop = GameLoop({
     document.getElementById('backStones').innerHTML = parseInt(initialValues.backStones);
 
     //update each obstacle
-    obstacles.forEach(function (obstacle) {
+    obstacles.forEach(function (obstacle, key) {
       obstacle.update();
+      // check if player collided with obstacle
+      if (obstacle.collidesWith(player_sprite)) {
+        // console.log('collided with ' + obstacle.collider);
+        if (obstacle.collider == 'backstone') {
+          initialValues.backStones++;
+          obstacles.splice(key, 1);
+        }
+        else {
+          player_sprite.destroy = true;
+          loop.stop();
+          endLoop.start();
+        }
+      }
     })
 
-    meteor_shower.commence();
+    meteor_shower.commence(player_sprite, loop);
 
     // probability of spawning new obstacle is 0.03%
     if (initialValues.spawnObstacle) {
