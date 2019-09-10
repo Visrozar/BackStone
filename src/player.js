@@ -19,22 +19,17 @@ export default function player_sprite() {
 
         // required for moving back in time
         rewind: new Rewind,
-        backstone_mode: false,
 
         // pass a custom update function to the sprite
         update: function () {
-            if (this.backstone_mode) {
-                if (this.rewind.doneRewind()) this.backstone_mode = false;
-                else {
-                    let rewind = this.rewind.back();
-                    this.x -= rewind.x;
-                    this.y -= rewind.y;
-                }
+            if (initialValues.rewindMode) {
+                let rewind = this.rewind.back();
+                this.x -= rewind.x;
+                this.y -= rewind.y;
             } else {
-                if (keyPressed('down') && initialValues.backStones >= 0) {
-                    // backstone used
-                    this.backstone_mode = true;
-                }
+                // if (keyPressed('down') && initialValues.backStones >= 0) {
+                //     // backstone used
+                // }
                 if (keyPressed('left')) {
                     this.advance();
                     this.x -= this.speed;

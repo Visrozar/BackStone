@@ -16,6 +16,8 @@ class initialValues {
         this.stoneShadow = [5,15,25];
         // decide whether spawn obstacle, stop spawning in case of backstone mode and meteor shower
         this.spawnObstacle = true;
+        // decide whether we're in rewind mode
+        this.rewindMode = false;
     }
 }
 

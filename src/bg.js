@@ -21,31 +21,30 @@ export default function bg_sprite(stars) {
 
         // required for moving back in time
         rewind: new Rewind,
-        backstone_mode: false,
 
         // pass a custom update function to the sprite
         update: function () {
-            if (this.backstone_mode) {
-                if (this.rewind.doneRewind()) this.backstone_mode = false;
+            if (initialValues.rewindMode) {
+                if (this.rewind.doneRewind()) initialValues.rewindMode = false;
                 else {
                     let rewind = this.rewind.back();
-                    this.x -= rewind.x;
-                    this.y -= rewind.y;
+                    this.x = rewind.x;
+                    this.y = rewind.y;
                 }
             } else {
                 if (keyPressed('down') && initialValues.backStones >= 0) {
                     // backstone used
-                    this.backstone_mode = true;
+                    initialValues.rewindMode = true;
                 }
                 this.advance();
-                this.rewind.add(0, this.dy);
+                this.rewind.add(this.x, this.y);
             }
         },
         render: function () {
             this.draw();
 
             // draw back
-            if (this.backstone_mode) {
+            if (initialValues.rewindMode) {
                 let ctx = this.context;
                 let rewind_length = this.rewind.rewind.length;
                 ctx.beginPath();
