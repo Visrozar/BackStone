@@ -81,19 +81,16 @@ let loop = GameLoop({
     document.getElementById('backStones').innerHTML = parseInt(backStones + 1);
 
     //update each obstacle
-    obstacles.forEach(function(obstacle){
+    obstacles.forEach(function (obstacle) {
       obstacle.update();
     })
 
     meteor_shower.commence();
 
     // probability of spawning new obstacle is 0.03%
-    if(initialValues.spawnObstacle){
-      if( Math.random() <= 0.03){
-        if (obstacles.length == 15){
-          obstacles.shift();
-        }
-        obstacles.push(obstacle_factory.create_obstacle(player_sprite.x,player_sprite.y));
+    if (initialValues.spawnObstacle) {
+      if (Math.random() <= 0.03) {
+        obstacles.push(obstacle_factory.create_obstacle(player_sprite.x, player_sprite.y));
       }
     }
   },
@@ -103,7 +100,11 @@ let loop = GameLoop({
     background_sprite3.render();
     player_sprite.render();
     //render all obstacles
-    obstacles.forEach(function(obstacle){
+    obstacles.forEach(function (obstacle, key) {
+      // this object is destroyed
+      if (obstacle.y > (initialValues.canvas.height * 2)) {
+        obstacles.splice(key, 1);
+      }
       obstacle.render();
     });
 
