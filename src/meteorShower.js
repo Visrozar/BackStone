@@ -43,7 +43,7 @@ class MeteorShower {
             height: height,
 
             x: Math.random() * (initialValues.canvas.width),
-            y: -height,
+            y: -height - initialValues.canvas.height,
 
             dx: 0,
             dy: 14,
