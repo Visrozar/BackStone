@@ -32,8 +32,9 @@ export default function bg_sprite(stars) {
                     this.y = rewind.y;
                 }
             } else {
-                if (keyPressed('down') && initialValues.backStones >= 0) {
+                if (keyPressed('down') && initialValues.backStones > 0) {
                     // backstone used
+                    initialValues.backStones--;
                     initialValues.rewindMode = true;
                 }
                 this.advance();

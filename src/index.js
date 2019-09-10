@@ -2,7 +2,6 @@ import { Sprite, GameLoop, initKeys, bindKeys } from 'kontra';
 import initialValues from './initialValues';
 import MeteorShower from './meteorShower';
 
-let backStones = initialValues.backStones;
 let canvas = initialValues.canvas;
 
 // gameMenu initialization
@@ -78,7 +77,7 @@ let loop = GameLoop({
     player_sprite.update();
     initialValues.score = initialValues.score + dt;
     document.getElementById('score').innerHTML = parseInt(initialValues.score);
-    document.getElementById('backStones').innerHTML = parseInt(backStones + 1);
+    document.getElementById('backStones').innerHTML = parseInt(initialValues.backStones);
 
     //update each obstacle
     obstacles.forEach(function (obstacle) {
@@ -111,9 +110,4 @@ let loop = GameLoop({
     //rendor meteor shower
     meteor_shower.render();
   }
-});
-
-bindKeys(['down'], function (e) {
-  // backstone used
-  if (backStones >= 0) backStones--;
 });
