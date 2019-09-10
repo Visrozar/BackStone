@@ -8,8 +8,8 @@ class MeteorShower {
         this.meteors = [];
         this.alive = false;
         this.spawn = false;
-        this.spawnStopAtScore = 3;
-        this.startShowerAtScore = 10;
+        this.spawnStopAtScore = 70;
+        this.startShowerAtScore = 75;
         this.stopShowerAtScore = 95;
         this.spawnStartAtScore = 99;
         this.meteor_score_check = 0;
