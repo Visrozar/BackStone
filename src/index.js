@@ -1,6 +1,7 @@
 import { Sprite, GameLoop, initKeys, bindKeys } from 'kontra';
 import initialValues from './initialValues';
 import MeteorShower from './meteorShower';
+import ZZFX from './ZzFX.min.js';
 
 let canvas = initialValues.canvas;
 
@@ -97,8 +98,10 @@ let loop = GameLoop({
         if (obstacle.collider == 'backstone') {
           initialValues.backStones++;
           obstacles.splice(key, 1);
+          ZZFX.z(3242, { length: .2 });
         }
         else {
+          ZZFX.z(4294, { length: 2, noise: 1 });
           player_sprite.destroy = true;
           loop.stop();
           endLoop.start();
