@@ -9,34 +9,35 @@ export default class Obstacle extends Sprite.class {
 
         super();
         this.isShootingStar = false;
-        this.width = Math.floor(Math.random() * (40 - 20 + 1) + 20);
-        this.height = Math.floor(Math.random() * (40 - 20 + 1) + 20);
+        this.width = 50 + (Math.random() * (15-5) + 5);
+        this.height = 35 + (Math.random() * (15-5) + 5);
 
         // required for moving back in time
         this.rewind = new Rewind;
 
         // collision logic
-        this.collidesWith = collidesWith;
-        // this.anchor = { x: 0.5, y: 0.5 };
+        // this.collidesWith = collidesWith;
+        this.anchor = { x: 0.5, y: 0.5 };
         if (!isStationary) {
             // spawn out of canvas
             //random Int from interval = Math.floor(Math.random() * (max - min) + min); // considering -10 to width + 10
-            this.x = Math.floor(Math.random() * (initialValues.canvas.width + 20) - 10);
+            this.x = Math.floor(Math.random() * (initialValues.canvas.width + 40) - 40);
 
             //  to left & right of canvas, y -> -10 to 0.7 * canvasheight
             if ((this.x >= -10 && this.x < 0) || this.x > initialValues.canvas.width) {
-                this.y = Math.floor(Math.random() * (0.7 * initialValues.canvas.height + 10) - 10);
-                this.x = this.x - initialValues.canvas.width;
+                this.y = Math.floor(Math.random() * (0.9 * initialValues.canvas.height + 10) - 10);
             }
             else {
                 // in canvas , y -> -10 to 0
-                this.y = -this.height - initialValues.canvas.height;
+                this.y = -this.height;
             }
             //colour
             this.color = initialValues.colors[Math.floor(Math.random() * initialValues.colors.length)];
 
             //probability of shooting start is 10%
             if (Math.random() <= 0.1) {
+                this.width = 25;
+                this.height = 25;
                 this.theme = themes.shooting_star;
                 this.isShootingStar = true;
                 this.collider = 'shooting_star';
@@ -44,11 +45,16 @@ export default class Obstacle extends Sprite.class {
             //select one of the available moving themes
             else {
                 var availableThemes = Object.keys(themes.movingThemes);
-                this.theme = themes.movingThemes[availableThemes[Math.floor(Math.random() * availableThemes.length)]];
+                var selectedTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)]
+                this.theme = themes.movingThemes[selectedTheme];
                 this.collider = 'asteroid';
+                if ( selectedTheme == 'asteroid3') this.width += 20;
             }
         }
         else {
+
+            this.width = (Math.random() * (45-30) + 30);
+            this.height = (Math.random() * (45-30) + 30);
 
             // stationary object will be inside canvas
             this.x = Math.floor(Math.random() * initialValues.canvas.width);
