@@ -67,6 +67,7 @@ export default class ObstacleFactory {
         if(obstacle.isShootingStar){
           obstacle.dx = obstacle.dx * 2;
           obstacle.dy = obstacle.dy * 2;
+          obstacle.y -= initialValues.canvas.height;
           obstacle.rotation = Math.atan(Math.abs(obstacle.dy)/Math.abs(obstacle.dx));
           if (theta > 0){
             obstacle.rotation = Math.PI - obstacle.rotation;

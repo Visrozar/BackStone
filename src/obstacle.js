@@ -9,14 +9,14 @@ export default class Obstacle extends Sprite.class {
 
         super();
         this.isShootingStar = false;
-        this.width = 50 + (Math.random() * (15-5) + 5);
-        this.height = 35 + (Math.random() * (15-5) + 5);
+        this.width = 50 + (Math.random() * (15 - 5) + 5);
+        this.height = 35 + (Math.random() * (15 - 5) + 5);
 
         // required for moving back in time
         this.rewind = new Rewind;
 
         // collision logic
-        // this.collidesWith = collidesWith;
+        this.collidesWith = collidesWith;
         this.anchor = { x: 0.5, y: 0.5 };
         if (!isStationary) {
             // spawn out of canvas
@@ -36,8 +36,8 @@ export default class Obstacle extends Sprite.class {
 
             //probability of shooting start is 10%
             if (Math.random() <= 0.1) {
-                this.width = 25;
-                this.height = 25;
+                this.width = 50;
+                this.height = 50;
                 this.theme = themes.shooting_star;
                 this.isShootingStar = true;
                 this.collider = 'shooting_star';
@@ -48,13 +48,13 @@ export default class Obstacle extends Sprite.class {
                 var selectedTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)]
                 this.theme = themes.movingThemes[selectedTheme];
                 this.collider = 'asteroid';
-                if ( selectedTheme == 'asteroid3') this.width += 20;
+                if (selectedTheme == 'asteroid3') this.width += 20;
             }
         }
         else {
 
-            this.width = (Math.random() * (45-30) + 30);
-            this.height = (Math.random() * (45-30) + 30);
+            this.width = (Math.random() * (45 - 30) + 30);
+            this.height = (Math.random() * (45 - 30) + 30);
 
             // stationary object will be inside canvas
             this.x = Math.floor(Math.random() * initialValues.canvas.width);
@@ -105,16 +105,16 @@ export default class Obstacle extends Sprite.class {
 
     update() {
         if (initialValues.rewindMode) {
-            if (this.rewind.doneRewind()) {
-                initialValues.spawnObstacle = false;
-            }
-            else {
+            if (!this.rewind.doneRewind()) {
+                //     initialValues.spawnObstacle = false;
+                // }
+                // else {
                 let rewind = this.rewind.back();
                 this.x = rewind.x;
                 this.y = rewind.y;
             }
         } else {
-            initialValues.spawnObstacle = true;
+            //initialValues.spawnObstacle = true;
             this.rewind.add(this.x, this.y);
         }
         this.advance();
@@ -127,5 +127,5 @@ function collidesWith(object) {
     let dx = this.x - object.x;
     let dy = this.y - object.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
-    return distance < this.width + object.width;
+    return distance <= this.width/2 + object.width/2; _
 }
