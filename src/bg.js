@@ -1,6 +1,7 @@
 import { keyPressed } from 'kontra';
 import Rewind from './rewind';
 import initialValues from './initialValues';
+import ZZFX from './ZzFX.min.js';
 
 let canvas = initialValues.canvas;
 
@@ -36,6 +37,7 @@ export default function bg_sprite(stars) {
                     // backstone used
                     initialValues.backStones--;
                     initialValues.rewindMode = true;
+                    ZZFX.z(32, { length: 2 });
                 }
                 this.advance();
                 this.rewind.add(this.x, this.y);
