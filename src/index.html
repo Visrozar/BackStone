@@ -34,6 +34,44 @@
 
         .gameMenu {
             margin: auto;
+            background-color: black;
+            color: wheat;
+        }
+
+        .content {
+            margin: 5%;
+            padding-top: 2%;
+            padding-bottom: 7%;
+            font-family: cursive;
+        }
+
+        button {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #58bfca;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+            margin-top: 5%;
+            font-family: cursive;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #49a6b1
+        }
+
+        button:active {
+            background-color: #49a6b1;
+            box-shadow: 4px 7px rgba(88, 191, 202, 0.5294117647058824);
+            transform: translateY(4px);
         }
     </style>
 </head>
@@ -43,29 +81,34 @@
     <span id=scoreBoard class="scoreBoard">Score: <span id="score">0</span> </span>
     <span id=backStoneBoard class="backStoneBoard">BackStones: <span id="backStones">0</span> </span>
     <div id="menu" class="gameMenu">
-        <h1>Highest Score: <span id="highestScore">0</span></h1>
-        <p>
-            <h1>Story: </h1>
+        <div class="content">
+            <h1>Highest Score: <span id="highestScore">0</span></h1>
             <p>
-                The world is on the verge of destruction and you are one of the last surviving ships left of our
-                species.
-                In the modern age of discoveries and technology, we've found a stone capable of doing something that we
-                never even dreamt of, "get you <b>BACK</b> in time".
-                We started calling these stones as BackStones.
-                These stones can be found spread across the galaxy.
+                <h1>Story: </h1>
+                <p>
+                    The world is on the verge of destruction and you are one of the last surviving ships left of our
+                    species.
+                    In the modern age of discoveries and technology, we've found a stone capable of doing something that
+                    we
+                    never even dreamt of, "get you <b>BACK</b> in time".
+                    We started calling these stones as BackStones.
+                    These stones can be found spread across the galaxy.
+                </p>
             </p>
-        </p>
-        <p>
-            <h1>Instructions: </h1>
-            <ul>
-                <li>Use &larr; and &rarr; to move left and right</li>
-                <li>Collect as many BackStones as possible</li>
-                <li>Avoid asteroids</li>
-                <li>In a critical situation you can use the &darr; to use a BackStone to reverse the flow of time</li>
-                <li>But don't forget you only have a limited number of BackStones</li>
-            </ul>
-        </p>
-        <button id="startGame">Click here to begin</button>
+            <p>
+                <h1>Instructions: </h1>
+                <ul>
+                    <li>Use &larr; and &rarr; to move left and right</li>
+                    <li>Collect as many BackStones as possible</li>
+                    <li>Avoid asteroids</li>
+                    <li>In a critical situation you can use the &darr; to use a BackStone to reverse the flow of time
+                    </li>
+                    <li>But don't forget you only have a limited number of BackStones</li>
+                </ul>
+            </p>
+            <button id="startGame">Click here to begin</button>
+        </div>
+
     </div>
 </body>
 
