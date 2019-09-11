@@ -252,10 +252,6 @@ export default {
     this.context.save();
     this.context.translate(this.viewX,this.viewY);
 
-    let anchorWidth = -this.width * this.anchor.x;
-    let anchorHeight = -this.height * this.anchor.y;
-    this.context.fillRect(anchorWidth, anchorHeight, this.width, this.height);
-
     this.context.beginPath();
     this.context.arc(0,0,47,0.3*Math.PI,0.7*Math.PI);
     this.context.bezierCurveTo(-45,15,-30,0,-(Math.random()*(34-26)+26),-15);

@@ -26,7 +26,10 @@ export default function bg_sprite(stars) {
         // pass a custom update function to the sprite
         update: function () {
             if (initialValues.rewindMode) {
-                if (this.rewind.doneRewind()) initialValues.rewindMode = false;
+                if (this.rewind.doneRewind()) {
+                    initialValues.rewindMode = false;
+                    initialValues.spawnObstacle = true;
+                }
                 else {
                     let rewind = this.rewind.back();
                     this.x = rewind.x;
@@ -37,6 +40,7 @@ export default function bg_sprite(stars) {
                     // backstone used
                     initialValues.backStones--;
                     initialValues.rewindMode = true;
+                    initialValues.spawnObstacle = false;
                     ZZFX.z(32, { length: 2 });
                 }
                 this.advance();

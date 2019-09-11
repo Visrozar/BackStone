@@ -30,7 +30,7 @@ class MeteorShower {
     }
 
     addMeteor() {
-        if (Math.random() <= 0.08 && this.meteors.length < 15) {
+        if (Math.random() <= 0.1 && this.meteors.length < 15) {
             // if (this.meteors.length > 10) this.meteors.shift();
             this.meteors.push(this.getMeteor());
         }
@@ -39,7 +39,7 @@ class MeteorShower {
     getMeteor() {
         let width = 60;
         let height = 60;
-        let speed = 14;
+        let speed = 17;
         return Sprite({
             width: width,
             height: height,
@@ -121,7 +121,7 @@ class MeteorShower {
             this.showWarning = true;
             setTimeout(function () {
                 this.showWarning = false;
-            }.bind(this), 4000);
+            }.bind(this), 5000);
         }
 
         //start meteor shower at 100
