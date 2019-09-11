@@ -28,7 +28,7 @@ export default function player_sprite() {
         x: canvas.width / 2,
         y: canvas.height * 4 / 5,
         speed: 6,
-        anchor: { x: 0, y: 0 },
+        anchor: { x: 0.5, y: 0.5 },
         fillStyle: 'yellow', // thruster color
 
         // required for a rectangle sprite
@@ -80,42 +80,96 @@ export default function player_sprite() {
                 }
             }
         },
+        draw: function () {
+            this.context.save();
+            this.context.translate(this.x,this.y);
+
+            this.context.beginPath();
+            this.context.lineJoin = 'round';
+            this.context.moveTo(this.width/2, -0.2*this.height);
+            this.context.lineTo(-this.width/2, -0.2*this.height);
+            this.context.lineTo(0, -0.5 * this.height);
+            this.context.lineTo(this.width/2, -0.2*this.height);
+            this.context.fillStyle = '#455A64';
+            this.context.fill();
+
+            this.context.beginPath();
+            this.context.moveTo(this.width/2, -0.2*this.height);
+            this.context.quadraticCurveTo(this.width/2 + 0.1*this.width, 0, this.width/2, 0.45*this.height);
+            this.context.lineTo(-this.width/2, 0.45*this.height);
+            this.context.quadraticCurveTo(-this.width/2 - 0.1*this.width, 0, -this.width/2,-0.2*this.height);
+            this.context.fillStyle = '#EEEEEE';
+            this.context.fill();
+
+            this.context.beginPath();
+            this.context.arc(0, -0.00625*this.height, 0.15*this.height, 0, 2 * Math.PI);
+            this.context.fillStyle = '#455A64';
+            this.context.fill();
+
+            this.context.beginPath();
+            this.context.arc(0, -0.00625*this.height, 0.1*this.height, 0, 2 * Math.PI);
+            this.context.fillStyle = '#80DEEA';
+            this.context.fill();
+
+            this.context.beginPath();
+            this.context.moveTo(1.15*this.width/2, 0.32*this.height);
+            this.context.lineTo(-1.15*this.width/2, 0.32*this.height);
+            this.context.lineWidth = 0.07*this.height;
+            this.context.strokeStyle = '#455A64';
+            this.context.stroke();
+
+            this.context.beginPath();
+            this.context.moveTo(1.1*this.width/2, 0.2*this.height);
+            this.context.lineTo(1.5*this.width/2, 0.42*this.height);
+            this.context.lineTo(1.5*this.width/2, 0.72*this.height);
+            this.context.lineTo(1.3*this.width/2, 0.47*this.height);
+            this.context.lineTo(1.1*this.width/2, 0.4*this.height);
+            this.context.fillStyle = '#ef5350';
+            this.context.fill();
+
+            this.context.beginPath();
+            this.context.moveTo(-1.1*this.width/2, 0.2*this.height);
+            this.context.lineTo(-1.5*this.width/2, 0.42*this.height);
+            this.context.lineTo(-1.5*this.width/2, 0.72*this.height);
+            this.context.lineTo(-1.3*this.width/2, 0.47*this.height);
+            this.context.lineTo(-1.1*this.width/2, 0.4*this.height);
+            this.context.fillStyle = '#ef5350';
+            this.context.fill();
+
+            var rys = [0.6*this.height, 0.7*this.height, 0.7*this.height, 0.75*this.height]
+            var ry = rys[Math.floor(Math.random() * rys.length)]
+
+            this.context.beginPath();
+            this.context.moveTo(-0.7*this.width/2, 0.45*this.height);
+            this.context.quadraticCurveTo(-0.65*this.width/2, 0.6*this.height, 0, ry);
+            this.context.quadraticCurveTo(0.65*this.width/2, 0.6*this.height, 0.7*this.width/2, 0.45*this.height);
+            this.context.fillStyle = '#F57C00';
+            this.context.fill();
+
+            this.context.beginPath();
+            this.context.moveTo(-0.6*this.width/2, 0.45*this.height);
+            this.context.quadraticCurveTo(-0.55*this.width/2, 0.55*this.height, 0, 0.9*ry);
+            this.context.quadraticCurveTo(0.55*this.width/2, 0.55*this.height, 0.6*this.width/2, 0.45*this.height);
+            this.context.fillStyle = '#FFF176';
+            this.context.fill();
+
+            this.context.restore();
+        },
         render: function () {
-            if (this.destroy) {
-                // draw thruster behind the ship
-                this.fillStyle = this.fillStyle == 'yellow' ? 'red' : 'yellow';
-                this.context.fillStyle = this.fillStyle;
-                this.context.beginPath();
-                this.context.arc(this.x + this.width / 2, this.y + this.height, Math.random() * 6, 0, 2 * Math.PI);
-                this.context.fill();
+            // if (this.destroy) {
+            //     // draw thruster behind the ship
+            //     this.fillStyle = this.fillStyle == 'yellow' ? 'red' : 'yellow';
+            //     this.context.fillStyle = this.fillStyle;
+            //     this.context.beginPath();
+            //     this.context.arc(this.x + this.width / 2, this.y + this.height, Math.random() * 6, 0, 2 * Math.PI);
+            //     this.context.fill();
 
-                this.gameOver.render();
-            } else {
-                // draw thruster behind the ship
-                this.fillStyle = this.fillStyle == 'yellow' ? 'red' : 'yellow';
-                this.context.fillStyle = this.fillStyle;
-                this.context.beginPath();
-                this.context.arc(this.x + this.width / 2, this.y + this.height, Math.random() * 6, 0, 2 * Math.PI);
-                this.context.fill();
+            //     this.gameOver.render();
+            // } 
 
-                // draw the ship
-                this.draw();
+            // draw the ship
+            this.draw();
 
-                // draw the conical top of the ship
-                this.context.beginPath();
-                this.context.moveTo(this.x, this.y);
-                this.context.lineTo(this.x + this.width / 2, this.y - 5);
-                this.context.lineTo(this.x + this.width, this.y);
-                this.context.lineTo(this.x, this.y);
-                this.context.fillStyle = this.color;
-                this.context.fill();
-
-                // draw the window
-                this.context.fillStyle = 'white';
-                this.context.beginPath();
-                this.context.arc(this.x + this.width / 2, this.y + this.height / 3, 2, 0, 2 * Math.PI);
-                this.context.fill();
-            }
 
         }
     }

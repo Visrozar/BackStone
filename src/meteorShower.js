@@ -48,7 +48,8 @@ class MeteorShower {
             y: -height - (initialValues.canvas.height * speed / 4),
 
             dx: 0,
-            dy: speed,
+            dy: speed * initialValues.backgroundSpeed/4,
+            anchor: {x: 0.5, y: 0.5},
 
             render: themes.meteor_shower,
             rewind: new Rewind,

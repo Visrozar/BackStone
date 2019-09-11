@@ -113,7 +113,7 @@ let loop = GameLoop({
 
     // probability of spawning new obstacle is 0.03%
     if (initialValues.spawnObstacle) {
-      if (Math.random() <= 0.03) {
+      if (Math.random() <= 0.039) {
         obstacles.push(obstacle_factory.create_obstacle(player_sprite.x, player_sprite.y));
       }
     }

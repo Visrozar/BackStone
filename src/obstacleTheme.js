@@ -11,35 +11,34 @@ export default {
 
       this.context.beginPath();
       this.context.fillStyle = 'darkgrey';
-      this.context.moveTo(0, 0);
-      this.context.lineTo(6, -14);
-      this.context.lineTo(22, -34);
-      this.context.lineTo(44, -28);
-      this.context.lineTo(66, 0);
-      this.context.lineTo(44, 20);
-      this.context.lineTo(22, 14);
-      this.context.lineTo(0, 0);
+      this.context.lineTo(-24, -11);
+      this.context.lineTo(-8, -31);
+      this.context.lineTo(14, -25);
+      this.context.lineTo(36, 3);
+      this.context.lineTo(14, 23);
+      this.context.lineTo(-8, 17);
+      this.context.lineTo(-30, 3);
       this.context.fill();
 
       this.context.beginPath();
       this.context.strokeStyle = 'grey';
       this.context.lineCap = 'butt';
       this.context.lineWidth = 3;
-      this.context.arc(28, -15, 5, 0, 1.8*Math.PI);
+      this.context.arc(-2, -12, 5, 0, 1.8*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(30, 5, 3, 0, 1.5*Math.PI);
+      this.context.arc(0, 8, 3, 0, 1.5*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(52, 2, 2, 0, Math.PI);
+      this.context.arc(22, 5, 2, 0, Math.PI);
       this.context.stroke();
 
       this.context.restore();
@@ -52,16 +51,16 @@ export default {
 
       this.context.beginPath();
       this.context.fillStyle = 'darkgrey';
-      this.context.moveTo(0, 0);
-      this.context.lineTo(12, -22);
-      this.context.lineTo(44, -22);
-      this.context.lineTo(66, 0);
-      this.context.lineTo(55, 30);
-      this.context.lineTo(44, 43);
-      this.context.lineTo(16, 48);
-      this.context.arc(-1, 40, 8,0.5*Math.PI, 0.7*Math.PI);
-      this.context.lineTo(-28, 16);
-      this.context.arc(12, -22, 4, 0, Math.PI)
+      this.context.moveTo(-25, -10);
+      this.context.lineTo(-13, -32);
+      this.context.lineTo(19, -32);
+      this.context.lineTo(41, -10);
+      this.context.lineTo(30, 20);
+      this.context.lineTo(19, 23);
+      this.context.lineTo(-9, 38);
+      this.context.arc(-26, 30, 8,0.5*Math.PI, 0.7*Math.PI);
+      this.context.lineTo(-43, 6);
+      this.context.arc(-13, -32, 4, 0, Math.PI)
       //this.context.lineTo(0, 0);
       this.context.fill();
 
@@ -69,26 +68,26 @@ export default {
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(-14, 15, 5, 0, 1.8*Math.PI);
+      this.context.arc(-9, 5, 5, 0, 1.8*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(6, 25, 6, 0, 1.5*Math.PI);
+      this.context.arc(-19, 15, 6, 0, 1.5*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.fillStyle = 'grey';
-      this.context.arc(32, 25, 10, 0, 1.5*Math.PI);
+      this.context.arc(17, 15, 10, 0, 1.5*Math.PI);
       this.context.fill();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(52, 2, 2, 0, Math.PI);
+      this.context.arc(27, -8, 2, 0, Math.PI);
       this.context.stroke();
 
       this.context.restore();
@@ -102,45 +101,45 @@ export default {
 
       this.context.beginPath();
       this.context.fillStyle = 'darkgrey';
-      this.context.moveTo(0, 0);
-      this.context.lineTo(6, -16);
-      this.context.lineTo(12, -18);
-      this.context.lineTo(32, -27);
-      this.context.lineTo(60, -24);
-      this.context.lineTo(74, -29);
-      this.context.lineTo(79, -27);
-      this.context.lineTo(82, 0);
-      this.context.lineTo(76, 22);
-      this.context.lineTo(46, 16);
-      this.context.lineTo(24, 16);
-      this.context.arc(24, 0, 14, 0,0.7*Math.PI);
-      this.context.lineTo(12, 16);
-      this.context.lineTo(6, 14);
-      this.context.lineTo(0, 0);
+      this.context.moveTo(-40, 5);
+      this.context.lineTo(-34, -11);
+      this.context.lineTo(-38, -13);
+      this.context.lineTo(-8, -22);
+      this.context.lineTo(20, -19);
+      this.context.lineTo(34, -24);
+      this.context.lineTo(39, -22);
+      this.context.lineTo(42, 5);
+      this.context.lineTo(36, 27);
+      this.context.lineTo(6, 21);
+      this.context.lineTo(-16, 21);
+      this.context.arc(-16, 5, 14, 0,0.7*Math.PI);
+      this.context.lineTo(-38, 21);
+      this.context.lineTo(-34, 19);
+      this.context.lineTo(-40, 5);
       this.context.fill();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(18, 2, 6, 0.3*Math.PI, 1.4*Math.PI);
+      this.context.arc(-22, 7, 6, 0.3*Math.PI, 1.4*Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.fillStyle = 'grey';
-      this.context.arc(48, -4, 6, 0.2*Math.PI, 1.7*Math.PI);
+      this.context.arc(8, 1, 6, 0.2*Math.PI, 1.7*Math.PI);
       this.context.fill();
 
       this.context.beginPath();
       this.context.fillStyle = 'grey';
-      this.context.arc(36, -14, 6, 0.7*Math.PI, 2*Math.PI);
+      this.context.arc(-4, -9, 6, 0.7*Math.PI, 2*Math.PI);
       this.context.fill();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(72, 10, 6, Math.PI, 1.75*Math.PI);
+      this.context.arc(32, 15, 6, Math.PI, 1.75*Math.PI);
       this.context.stroke();
 
       this.context.restore();
@@ -160,18 +159,18 @@ export default {
 
     this.context.beginPath();
     this.context.fillStyle = gradientStyle;
-    this.context.moveTo(0,0);
-    this.context.lineTo(126,18);
-    this.context.lineTo(126,-18);
+    this.context.moveTo(-120,0);
+    this.context.lineTo(6,18);
+    this.context.lineTo(6,-18);
     this.context.fill();
 
-    var gradientStyle = this.context.createRadialGradient(75, 50, 5, 90, 60, 100);
+    var gradientStyle = this.context.createRadialGradient(0, 0, 10, 0, 0, 40);
     gradientStyle.addColorStop(0, this.color);
     gradientStyle.addColorStop(1, "white");
 
     this.context.beginPath();
     this.context.fillStyle = gradientStyle;
-    this.context.arc(120,0,18,0,2*Math.PI);
+    this.context.arc(0,0,18,0,2*Math.PI);
     this.context.fill();
 
     this.context.restore();
@@ -253,19 +252,23 @@ export default {
     this.context.save();
     this.context.translate(this.viewX,this.viewY);
 
+    let anchorWidth = -this.width * this.anchor.x;
+    let anchorHeight = -this.height * this.anchor.y;
+    this.context.fillRect(anchorWidth, anchorHeight, this.width, this.height);
+
     this.context.beginPath();
-    this.context.arc(150,75,47,0.3*Math.PI,0.7*Math.PI);
-    this.context.bezierCurveTo(105,90,120,75,Math.random()*(124-116)+116,60);
-    this.context.lineTo(130,80);
-    this.context.lineTo(Math.random()*(129-121)+121,40);
-    this.context.lineTo(140,60);
-    this.context.lineTo(150,Math.random()*8);
-    this.context.lineTo(160,60);
-    this.context.lineTo(Math.random()*(179-171)+171,40);
-    this.context.lineTo(170,80);
-    var rightx = Math.random()*(184-176)+176;
-    this.context.lineTo(rightx,60);
-    this.context.bezierCurveTo(rightx,75,195,90,175,116);
+    this.context.arc(0,0,47,0.3*Math.PI,0.7*Math.PI);
+    this.context.bezierCurveTo(-45,15,-30,0,-(Math.random()*(34-26)+26),-15);
+    this.context.lineTo(-20,5);
+    this.context.lineTo(-(Math.random()*(29-21)+21),-35);
+    this.context.lineTo(-10,-15);
+    this.context.lineTo(0,-40);
+    this.context.lineTo(10,-15);
+    this.context.lineTo(Math.random()*(29-21)+21,-35);
+    this.context.lineTo(20,5);
+    var rightx = Math.random()*(34-26)+26;
+    this.context.lineTo(rightx,-15);
+    this.context.bezierCurveTo(rightx,0,45,15,25,41);
     this.context.fillStyle = '#FFD54F';
     this.context.fill();
 
@@ -273,29 +276,29 @@ export default {
     this.context.lineWidth = 1;
 
     this.context.beginPath();
-    this.context.arc(150,100,18,0,2*Math.PI);
+    this.context.arc(0,25,18,0,2*Math.PI);
     this.context.fillStyle = '#A1887F';
     this.context.fill();
 
     this.context.beginPath();
-    this.context.arc(140,100,3,0,1.2*Math.PI);
+    this.context.arc(-10,25,3,0,1.2*Math.PI);
     this.context.strokeStyle = '#5D4037';
     this.context.stroke();
 
     this.context.beginPath();
-    this.context.arc(160,105,4,0,0.8*Math.PI);
+    this.context.arc(10,30,4,0,0.8*Math.PI);
     this.context.strokeStyle = '#5D4037';
     this.context.stroke();
 
     this.context.beginPath();
-    this.context.arc(155,93,3,0,1.8*Math.PI);
+    this.context.arc(5,18,3,0,1.8*Math.PI);
     this.context.strokeStyle = '#5D4037';
     this.context.stroke();
 
     this.context.beginPath();
-    this.context.arc(150,96,22,1.7*Math.PI,1.3*Math.PI);
-    this.context.quadraticCurveTo(145,80,150,60);
-    this.context.quadraticCurveTo(155,80,163,78);
+    this.context.arc(0,21,22,1.7*Math.PI,1.3*Math.PI);
+    this.context.quadraticCurveTo(-5,5,0,-15);
+    this.context.quadraticCurveTo(5,3,13,3);
     this.context.fillStyle = 'rgba(255,138,101,0.5)';
     this.context.fill();
 
