@@ -199,7 +199,7 @@ export default {
 
       this.context.beginPath();
       this.context.fillStyle = gradientStyle;
-      this.context.arc(0,0,0.7*this.width,0,2*Math.PI);
+      this.context.arc(0,0,0.6*this.width,0,2*Math.PI);
       this.context.fill();
       this.context.restore();
     },
@@ -216,14 +216,14 @@ export default {
 
         this.context.beginPath();
         this.context.fillStyle = gradientStyle;
-        this.context.arc(0,0,0.7*this.width,0,2*Math.PI);
+        this.context.arc(0,0,0.6*this.width,0,2*Math.PI);
         this.context.fill();
 
         let ring = new Path2D();
         ring.moveTo(-this.width+5,-10);
-        ring.bezierCurveTo(-0.7*this.width*3.5,25,0.7*this.width*3.5,25,0.7*this.width-5,-10);
+        ring.bezierCurveTo(-0.6*this.width*3.5,25,0.6*this.width*3.5,25,0.6*this.width-5,-10);
         ring.moveTo(0.7*this.width-5,-10);
-        ring.bezierCurveTo(0.7*this.width*2.3,15,-0.7*this.width*2.3,15,-0.7*this.width+5,-10);
+        ring.bezierCurveTo(0.6*this.width*2.3,15,-0.6*this.width*2.3,15,-0.6*this.width+5,-10);
         ring.closePath();
         this.context.fill(ring);
 

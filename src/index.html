@@ -21,7 +21,9 @@
             position: fixed;
             top: 5%;
             left: 15%;
-            color: white;
+            color:wheat;
+            font-family: cursive;
+            text-shadow: 2px 2px 5px #CE93D8;
         }
 
         .backStoneBoard {
@@ -29,7 +31,28 @@
             position: fixed;
             top: 7%;
             left: 15%;
-            color: white;
+            color: wheat;
+            font-family: cursive;
+            text-shadow: 2px 2px 5px #CE93D8;
+        }
+
+        .warning {
+            /* display: none; */
+            position: fixed;
+            top: 10%;
+            left: 15%;
+            color: wheat;
+            font-family: cursive;
+            animation:blinkingText 1s infinite;
+            display: none;
+        }
+
+        @keyframes blinkingText{
+            0%{		color: wheat;	}
+            49%{	color: rgba(245,222,179 ,0.5);	}
+            50%{	color: wheat;	}
+            99%{	color: rgba(245,222,179 ,0.5);	}
+            100%{	color: wheat;	}
         }
 
         .gameMenu {
@@ -88,6 +111,7 @@
     <canvas id="myCanvas" class="gameStart"></canvas>
     <span id=scoreBoard class="scoreBoard">Score: <span id="score">0</span> </span>
     <span id=backStoneBoard class="backStoneBoard">BackStones: <span id="backStones">0</span> </span>
+    <span id=warning class="warning">Alert! Meteor shower incoming!</span>
     <div id="menu" class="gameMenu">
         <div class="content">
             <h1>Highest Score: <span id="highestScore">0</span></h1>
