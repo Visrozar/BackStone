@@ -49,6 +49,8 @@ export default {
       this.context.translate(this.viewX,this.viewY);
       this.context.rotate(this.rotation);
 
+      this.context.lineWidth = 0;
+
       this.context.beginPath();
       this.context.fillStyle = 'darkgrey';
       this.context.moveTo(-25, -10);
@@ -89,6 +91,8 @@ export default {
       this.context.lineWidth = 3;
       this.context.arc(27, -8, 2, 0, Math.PI);
       this.context.stroke();
+
+      this.context.lineWidth = 1;
 
       this.context.restore();
 
@@ -153,6 +157,8 @@ export default {
     this.context.translate(this.viewX,this.viewY);
     this.context.rotate(this.rotation);
 
+    this.context.lineWidth = 0;
+
     gradientStyle = this.context.createLinearGradient(0, 0, 200, 0);
     gradientStyle.addColorStop(0, this.color);
     gradientStyle.addColorStop(1, "white");
@@ -174,6 +180,8 @@ export default {
     this.context.arc(0,0,18,0,2*Math.PI);
     this.context.fill();
 
+    this.context.lineWidth = 1;
+
     this.context.restore();
   },
 
@@ -191,7 +199,7 @@ export default {
 
       this.context.beginPath();
       this.context.fillStyle = gradientStyle;
-      this.context.arc(0,0,this.width,0,2*Math.PI);
+      this.context.arc(0,0,0.7*this.width,0,2*Math.PI);
       this.context.fill();
       this.context.restore();
     },
@@ -208,14 +216,14 @@ export default {
 
         this.context.beginPath();
         this.context.fillStyle = gradientStyle;
-        this.context.arc(0,0,this.width,0,2*Math.PI);
+        this.context.arc(0,0,0.7*this.width,0,2*Math.PI);
         this.context.fill();
 
         let ring = new Path2D();
         ring.moveTo(-this.width+5,-10);
-        ring.bezierCurveTo(-this.width*3.5,25,this.width*3.5,25,this.width-5,-10);
-        ring.moveTo(this.width-5,-10);
-        ring.bezierCurveTo(this.width*2.3,15,-this.width*2,.315,-this.width+5,-10);
+        ring.bezierCurveTo(-0.7*this.width*3.5,25,0.7*this.width*3.5,25,0.7*this.width-5,-10);
+        ring.moveTo(0.7*this.width-5,-10);
+        ring.bezierCurveTo(0.7*this.width*2.3,15,-0.7*this.width*2.3,15,-0.7*this.width+5,-10);
         ring.closePath();
         this.context.fill(ring);
 
@@ -234,6 +242,8 @@ export default {
     backStoneGradient.addColorStop(0.5,'#7E57C2');
     backStoneGradient.addColorStop(1,'#3949AB');
 
+    this.context.lineWidth = 0;
+
     this.context.beginPath();
     this.context.moveTo(-12,-3);
     this.context.quadraticCurveTo(-1,-7,0,-12);
@@ -244,6 +254,8 @@ export default {
     this.context.shadowColor = 'white';
     this.context.shadowBlur = initialValues.stoneShadow[Math.floor(Math.random()*initialValues.stoneShadow.length)];
     this.context.fill();
+
+    this.context.lineWidth = 1;
 
     this.context.restore();
 

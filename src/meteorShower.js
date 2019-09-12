@@ -30,7 +30,7 @@ class MeteorShower {
     }
 
     addMeteor() {
-        if (Math.random() <= 0.1 && this.meteors.length < 15) {
+        if (Math.random() <= 0.17 ) {
             // if (this.meteors.length > 10) this.meteors.shift();
             this.meteors.push(this.getMeteor());
         }
@@ -68,7 +68,7 @@ class MeteorShower {
         })
     }
 
-    update(player_sprite, loop) {
+    update(player_sprite, loop, endloop) {
         if (this.spawn && !initialValues.rewindMode) this.addMeteor();
         let meteors = this.meteors;
         meteors.forEach(function (meteor, key) {
@@ -80,7 +80,9 @@ class MeteorShower {
             // check if player collided with meteor
             if (meteor.collidesWith(player_sprite)) {
                 // console.log('collided with ' + meteor.collider);
+                player_sprite.destroy = true;
                 loop.stop();
+                endloop.start();
             }
         });
     }
@@ -111,7 +113,7 @@ class MeteorShower {
         this.spawn = true;
     }
 
-    commence(player_sprite, loop) {
+    commence(player_sprite, loop, endloop) {
 
         //substract mulyiple of 100 from score
         this.meteor_score_check = initialValues.score - Math.floor(initialValues.score / 100) * 100;
@@ -130,7 +132,7 @@ class MeteorShower {
         }
 
         //update meteor shower
-        if (this.alive) this.update(player_sprite, loop);
+        if (this.alive) this.update(player_sprite, loop, endloop);
 
         //stop meteor shower at 130
         if ((this.meteor_score_check > this.stopShowerAtScore) && this.alive) {

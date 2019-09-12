@@ -28,7 +28,9 @@ export default function bg_sprite(stars) {
             if (initialValues.rewindMode) {
                 if (this.rewind.doneRewind()) {
                     initialValues.rewindMode = false;
-                    initialValues.spawnObstacle = true;
+                    setTimeout(function(){
+                        initialValues.spawnObstacle = true;
+                    },6000);
                 }
                 else {
                     let rewind = this.rewind.back();
