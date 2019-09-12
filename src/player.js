@@ -24,6 +24,8 @@ export default function player_sprite() {
         this.context.rect(initialValues.canvas.width / 2 - width / 2, initialValues.canvas.height / 2 - height / 2, width, height);
         this.context.stroke();
     }
+    let width = canvas.width / 60;
+    let height = canvas.width / 40;
     return {
         x: canvas.width / 2,
         y: canvas.height * 4 / 5,
@@ -32,10 +34,17 @@ export default function player_sprite() {
         fillStyle: 'yellow', // thruster color
 
         // required for a rectangle sprite
-        width: canvas.width / 60,
-        height: canvas.width / 40,
+        width: width,
+        height: height,
         color: 'blue',
         destroy: false,
+        circles: [
+            [-0.1*width,-0.1*height,0.22*width],
+            [-0.1*width,0.05*height,0.24*width],
+            [0.2*width,-0.13*height,0.11*width],
+            [0.3*width,0.03*height,0.17*width],
+            [0.15*width,0.2*height,0.14*width]
+        ],
 
         // game over text
         gameOver: Sprite({
@@ -156,19 +165,33 @@ export default function player_sprite() {
             this.context.restore();
         },
         render: function () {
-            // if (this.destroy) {
-            //     // draw thruster behind the ship
-            //     this.fillStyle = this.fillStyle == 'yellow' ? 'red' : 'yellow';
-            //     this.context.fillStyle = this.fillStyle;
-            //     this.context.beginPath();
-            //     this.context.arc(this.x + this.width / 2, this.y + this.height, Math.random() * 6, 0, 2 * Math.PI);
-            //     this.context.fill();
+            if (this.destroy) {
+                // draw thruster behind the ship
+                this.context.save();
+                this.context.translate(this.x,this.y);
 
-            //     this.gameOver.render();
-            // } 
+                var gradient = this.context.createRadialGradient(0,0,1,0,0,2);
+                gradient.addColorStop(0,'#FFE082');
+                gradient.addColorStop(1,'#FFF9C4');
+                this.context.fillStyle = gradient;
+                this.context.shadowColor = '#FFD54F';
+                this.context.shadowBlur = 5;
 
+                this.circles.forEach(function(circle){
+                    circle[0] *= 1.05;
+                    circle[1] *= 1.05;
+                    circle[2] *= 0.95;
+                    this.context.beginPath();
+                    this.context.arc(circle[0],circle[1],circle[2],0,2*Math.PI);
+                    this.context.fill();
+                }.bind(this))
+
+                this.context.restore();
+            } 
+            else{
             // draw the ship
-            this.draw();
+                this.draw();
+            }
 
 
         }
