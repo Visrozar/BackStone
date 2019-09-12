@@ -51,6 +51,7 @@ bindKeys(['left', 'right', 'up', 'down', 'enter', 'space'], function (e) {
 let endLoop = GameLoop({
   update: function (dt) {
     player_sprite.update();
+    restartScreen();
   },
   render: function () {
     player_sprite.render();
@@ -139,6 +140,13 @@ function startGame() {
   document.getElementById('menu').style.display = 'none';
   initialValues.spawnObstacle = true;
   initialValues.gameStart = true;
+}
+
+function restartScreen() {
+  document.getElementById('menu').style.display = 'block';
+  document.getElementById('intro').style.display = 'none';
+  initialValues.spawnObstacle = false;
+  initialValues.gameStart = false;
 }
 
 // start the game

@@ -21,7 +21,7 @@
             position: fixed;
             top: 5%;
             left: 15%;
-            color:wheat;
+            color: wheat;
             font-family: cursive;
             text-shadow: 2px 2px 5px #CE93D8;
         }
@@ -43,16 +43,30 @@
             left: 15%;
             color: wheat;
             font-family: cursive;
-            animation:blinkingText 1s infinite;
+            animation: blinkingText 1s infinite;
             display: none;
         }
 
-        @keyframes blinkingText{
-            0%{		color: wheat;	}
-            49%{	color: rgba(245,222,179 ,0.5);	}
-            50%{	color: wheat;	}
-            99%{	color: rgba(245,222,179 ,0.5);	}
-            100%{	color: wheat;	}
+        @keyframes blinkingText {
+            0% {
+                color: wheat;
+            }
+
+            49% {
+                color: rgba(245, 222, 179, 0.5);
+            }
+
+            50% {
+                color: wheat;
+            }
+
+            99% {
+                color: rgba(245, 222, 179, 0.5);
+            }
+
+            100% {
+                color: wheat;
+            }
         }
 
         .gameMenu {
@@ -115,29 +129,34 @@
     <div id="menu" class="gameMenu">
         <div class="content">
             <h1>Highest Score: <span id="highestScore">0</span></h1>
-            <p>
-                <h1>Story: </h1>
+            <div id="intro">
                 <p>
-                    The world is on the verge of destruction and you are one of the last surviving ships left of our
-                    species.
-                    In the modern age of discoveries and technology, we've found a stone capable of doing something that
-                    we
-                    never even dreamt of, "get you <b>BACK</b> in time".
-                    We started calling these stones as BackStones.
-                    These stones can be found spread across the galaxy.
+                    <h1>Story: </h1>
+                    <p>
+                        The world is on the verge of destruction and you are one of the last surviving ships left of our
+                        species.
+                        In the modern age of discoveries and technology, we've found a stone capable of doing something
+                        that
+                        we
+                        never even dreamt of, "get you <b>BACK</b> in time".
+                        We started calling these stones as BackStones.
+                        These stones can be found spread across the galaxy.
+                    </p>
                 </p>
-            </p>
-            <p>
-                <h1>Instructions: </h1>
-                <ul>
-                    <li>Use &larr; and &rarr; to move left and right</li>
-                    <li>Collect as many BackStones as possible</li>
-                    <li>Avoid asteroids</li>
-                    <li>In a critical situation you can use the &darr; to use a BackStone to reverse the flow of time
-                    </li>
-                    <li>But don't forget you only have a limited number of BackStones</li>
-                </ul>
-            </p>
+                <p>
+                    <h1>Instructions: </h1>
+                    <ul>
+                        <li>Use &larr; and &rarr; to move left and right</li>
+                        <li>Collect as many BackStones as possible</li>
+                        <li>Avoid asteroids</li>
+                        <li>In a critical situation you can use the &darr; to use a BackStone to reverse the flow of
+                            time
+                        </li>
+                        <li>But don't forget you only have a limited number of BackStones</li>
+                    </ul>
+                </p>
+            </div>
+
             <button id="startGame">
                 <p>press "enter/spacebar" to begin</p>
                 Click here to begin
