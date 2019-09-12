@@ -60,7 +60,6 @@ export default class ObstacleFactory {
                 //obstacle.rotation = Math.random() * (6.28319 - 4.71239) + 4.71239;
                 obstacle.dx = -(Math.random()*(this.xSFast - this.xFast) + this.xFast) ;
                 obstacle.dy = (Math.random()*(this.yMed - this.ySlow) + this.ySlow);
-                console.log(obstacle.x,obstacle.y,obstacle.dx,obstacle.dy);
             }
         }
 
