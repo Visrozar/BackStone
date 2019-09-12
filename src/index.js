@@ -107,10 +107,10 @@ let loop = GameLoop({
       }
     })
 
-    meteor_shower.commence(player_sprite, loop);
+    meteor_shower.commence(player_sprite, loop, endLoop);
 
     // probability of spawning new obstacle is 0.03%
-    if (initialValues.spawnObstacle) {
+    if (initialValues.spawnObstacle && !meteor_shower.alive) {
       if (Math.random() <= 0.039) {
         obstacles.push(obstacle_factory.create_obstacle(player_sprite.x, player_sprite.y));
       }
