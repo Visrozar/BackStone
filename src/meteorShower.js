@@ -14,23 +14,11 @@ class MeteorShower {
         this.spawnStartAtScore = 99;
         this.meteor_score_check = 0;
         this.showWarning = false;
-        this.warning = Sprite({
-            width: 200,
-            height: 100,
 
-            x: initialValues.canvas.width / 2 - 100,
-            y: initialValues.canvas.width / 2 - 500,
-
-            dx: 0,
-            dy: initialValues.backgroundSpeed,
-
-            render: this.displayWarning
-
-        })
     }
 
     addMeteor() {
-        if (Math.random() <= 0.17 ) {
+        if (Math.random() <= 0.16 ) {
             // if (this.meteors.length > 10) this.meteors.shift();
             this.meteors.push(this.getMeteor());
         }
@@ -89,7 +77,7 @@ class MeteorShower {
 
     render() {
         if (this.showWarning) {
-            this.warning.render();
+            document.getElementById('warning').style.display = 'block';
         }
         else {
             if (this.alive) {
@@ -105,7 +93,7 @@ class MeteorShower {
         setTimeout(function () {
             this.meteors = [];
             this.alive = false;
-        }.bind(this), 4000);
+        }.bind(this), 8000);
     }
 
     startMeteorShower() {
@@ -123,6 +111,7 @@ class MeteorShower {
             this.showWarning = true;
             setTimeout(function () {
                 this.showWarning = false;
+                document.getElementById('warning').style.display = 'none';
             }.bind(this), 5000);
         }
 
@@ -144,24 +133,6 @@ class MeteorShower {
         }
     }
 
-    displayWarning() {
-        this.context.lineCap = "round";
-        this.context.lineJoin = "round";
-        this.context.lineWidth = 15;
-        let gradient = this.context.createLinearGradient(0, 0, initialValues.canvas.width, 0);
-        gradient.addColorStop("0", " magenta");
-        gradient.addColorStop("0.5", "blue");
-        gradient.addColorStop("1.0", "red");
-        // Fill with gradient
-        this.context.strokeStyle = gradient;
-        this.context.fillStyle = gradient;
-        this.context.font = initialValues.canvas.width / 40 + "px Verdana";
-        let width = initialValues.canvas.width * 0.5;
-        let height = initialValues.canvas.height * 0.15;
-        this.context.fillText("ALERT! METEOR SHOWER INCOMING!", initialValues.canvas.width / 2 - width / 2 + 50, initialValues.canvas.height / 2 + 5);
-        this.context.rect(initialValues.canvas.width / 2 - width / 2, initialValues.canvas.height / 2 - height / 2, width, height);
-        this.context.stroke();
-    }
 }
 
 export default MeteorShower;
