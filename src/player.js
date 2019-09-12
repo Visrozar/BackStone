@@ -154,6 +154,10 @@ export default function player_sprite() {
             this.context.fillStyle = '#FFF176';
             this.context.fill();
 
+            if (initialValues.rewindMode) {
+                
+            }
+
             this.context.restore();
         },
         render: function () {
