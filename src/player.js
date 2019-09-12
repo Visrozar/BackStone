@@ -85,6 +85,25 @@ export default function player_sprite() {
             this.context.save();
             this.context.translate(this.x, this.y);
 
+            if (initialValues.rewindMode) {
+                for (let i = 0; i < this.rewind.history.length; i++) {
+                    //calculate the alpha value for every element on the rewind.history array
+                    let alp = i/this.rewind.history.length;
+                    // set the fill style
+                    this.context.fillStyle = `rgba(255,0,0,${alp/5})`;
+                    //draw an arc
+                    this.context.beginPath();
+                    this.context.arc(
+                        this.rewind.history[i].x - this.x,
+                        this.rewind.history[i].y - this.y,
+                        this.width/2 * alp,
+                        0,
+                        2 * Math.PI
+                      );
+                    this.context.fill();
+                }
+            }
+
             this.context.beginPath();
             this.context.lineJoin = 'round';
             this.context.moveTo(this.width / 2, -0.2 * this.height);
@@ -153,10 +172,6 @@ export default function player_sprite() {
             this.context.quadraticCurveTo(0.55 * this.width / 2, 0.55 * this.height, 0.6 * this.width / 2, 0.45 * this.height);
             this.context.fillStyle = '#FFF176';
             this.context.fill();
-
-            if (initialValues.rewindMode) {
-                
-            }
 
             this.context.restore();
         },

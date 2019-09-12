@@ -4,9 +4,11 @@ export default {
 
   'movingThemes': {
 
-    'asteroid1': function() {
+    'asteroid1': function () {
       this.context.save();
-      this.context.translate(this.viewX,this.viewY);
+      this.context.translate(this.viewX, this.viewY);
+      rewindFx(this);
+
       this.context.rotate(this.rotation);
 
       this.context.beginPath();
@@ -24,14 +26,14 @@ export default {
       this.context.strokeStyle = 'grey';
       this.context.lineCap = 'butt';
       this.context.lineWidth = 3;
-      this.context.arc(-2, -12, 5, 0, 1.8*Math.PI);
+      this.context.arc(-2, -12, 5, 0, 1.8 * Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(0, 8, 3, 0, 1.5*Math.PI);
+      this.context.arc(0, 8, 3, 0, 1.5 * Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
@@ -44,9 +46,10 @@ export default {
       this.context.restore();
     },
 
-    'asteroid2': function() {
+    'asteroid2': function () {
       this.context.save();
-      this.context.translate(this.viewX,this.viewY);
+      this.context.translate(this.viewX, this.viewY);
+      rewindFx(this);
       this.context.rotate(this.rotation);
 
       this.context.lineWidth = 0;
@@ -60,7 +63,7 @@ export default {
       this.context.lineTo(30, 20);
       this.context.lineTo(19, 23);
       this.context.lineTo(-9, 38);
-      this.context.arc(-26, 30, 8,0.5*Math.PI, 0.7*Math.PI);
+      this.context.arc(-26, 30, 8, 0.5 * Math.PI, 0.7 * Math.PI);
       this.context.lineTo(-43, 6);
       this.context.arc(-13, -32, 4, 0, Math.PI)
       //this.context.lineTo(0, 0);
@@ -70,19 +73,19 @@ export default {
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(-9, 5, 5, 0, 1.8*Math.PI);
+      this.context.arc(-9, 5, 5, 0, 1.8 * Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(-19, 15, 6, 0, 1.5*Math.PI);
+      this.context.arc(-19, 15, 6, 0, 1.5 * Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.fillStyle = 'grey';
-      this.context.arc(17, 15, 10, 0, 1.5*Math.PI);
+      this.context.arc(17, 15, 10, 0, 1.5 * Math.PI);
       this.context.fill();
 
       this.context.beginPath();
@@ -98,9 +101,10 @@ export default {
 
     },
 
-    'asteroid3': function() {
+    'asteroid3': function () {
       this.context.save();
-      this.context.translate(this.viewX,this.viewY);
+      this.context.translate(this.viewX, this.viewY);
+      rewindFx(this);
       this.context.rotate(this.rotation);
 
       this.context.beginPath();
@@ -116,7 +120,7 @@ export default {
       this.context.lineTo(36, 27);
       this.context.lineTo(6, 21);
       this.context.lineTo(-16, 21);
-      this.context.arc(-16, 5, 14, 0,0.7*Math.PI);
+      this.context.arc(-16, 5, 14, 0, 0.7 * Math.PI);
       this.context.lineTo(-38, 21);
       this.context.lineTo(-34, 19);
       this.context.lineTo(-40, 5);
@@ -126,24 +130,24 @@ export default {
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(-22, 7, 6, 0.3*Math.PI, 1.4*Math.PI);
+      this.context.arc(-22, 7, 6, 0.3 * Math.PI, 1.4 * Math.PI);
       this.context.stroke();
 
       this.context.beginPath();
       this.context.fillStyle = 'grey';
-      this.context.arc(8, 1, 6, 0.2*Math.PI, 1.7*Math.PI);
+      this.context.arc(8, 1, 6, 0.2 * Math.PI, 1.7 * Math.PI);
       this.context.fill();
 
       this.context.beginPath();
       this.context.fillStyle = 'grey';
-      this.context.arc(-4, -9, 6, 0.7*Math.PI, 2*Math.PI);
+      this.context.arc(-4, -9, 6, 0.7 * Math.PI, 2 * Math.PI);
       this.context.fill();
 
       this.context.beginPath();
       this.context.lineCap = 'butt';
       this.context.strokeStyle = 'grey';
       this.context.lineWidth = 3;
-      this.context.arc(32, 15, 6, Math.PI, 1.75*Math.PI);
+      this.context.arc(32, 15, 6, Math.PI, 1.75 * Math.PI);
       this.context.stroke();
 
       this.context.restore();
@@ -151,10 +155,11 @@ export default {
     }
   },
 
-  'shooting_star': function() {
+  'shooting_star': function () {
 
     this.context.save();
-    this.context.translate(this.viewX,this.viewY);
+    this.context.translate(this.viewX, this.viewY);
+    rewindFx(this);
     this.context.rotate(this.rotation);
 
     this.context.lineWidth = 0;
@@ -165,9 +170,9 @@ export default {
 
     this.context.beginPath();
     this.context.fillStyle = gradientStyle;
-    this.context.moveTo(-120,0);
-    this.context.lineTo(6,18);
-    this.context.lineTo(6,-18);
+    this.context.moveTo(-120, 0);
+    this.context.lineTo(6, 18);
+    this.context.lineTo(6, -18);
     this.context.fill();
 
     var gradientStyle = this.context.createRadialGradient(0, 0, 10, 0, 0, 40);
@@ -177,7 +182,7 @@ export default {
     this.context.beginPath();
     this.context.strokeStyle = this.color;
     this.context.fillStyle = gradientStyle;
-    this.context.arc(0,0,18,0,2*Math.PI);
+    this.context.arc(0, 0, 18, 0, 2 * Math.PI);
     this.context.fill();
 
     this.context.lineWidth = 1;
@@ -187,10 +192,11 @@ export default {
 
   'stationaryThemes': {
 
-    'planet1': function(){
+    'planet1': function () {
 
       this.context.save();
-      this.context.translate(this.viewX,this.viewY);
+      this.context.translate(this.viewX, this.viewY);
+      rewindFx(this);
       this.context.rotate(this.rotation);
 
       var gradientStyle = this.context.createRadialGradient(10, 0, 15, 0, 0, 100);
@@ -199,60 +205,62 @@ export default {
 
       this.context.beginPath();
       this.context.fillStyle = gradientStyle;
-      this.context.arc(0,0,0.6*this.width,0,2*Math.PI);
+      this.context.arc(0, 0, 0.6 * this.width, 0, 2 * Math.PI);
       this.context.fill();
       this.context.restore();
     },
 
-    'planet2': function(){
+    'planet2': function () {
 
-        this.context.save();
-        this.context.translate(this.viewX,this.viewY);
-        this.context.rotate(this.rotation);
+      this.context.save();
+      this.context.translate(this.viewX, this.viewY);
+      this.context.rotate(this.rotation);
+      rewindFx(this);
 
-        var gradientStyle = this.context.createRadialGradient(10, 0, 15, 0, 0, 100);
-        gradientStyle.addColorStop(0, this.otherColor);
-        gradientStyle.addColorStop(1, this.color);
+      var gradientStyle = this.context.createRadialGradient(10, 0, 15, 0, 0, 100);
+      gradientStyle.addColorStop(0, this.otherColor);
+      gradientStyle.addColorStop(1, this.color);
 
-        this.context.beginPath();
-        this.context.fillStyle = gradientStyle;
-        this.context.arc(0,0,0.6*this.width,0,2*Math.PI);
-        this.context.fill();
+      this.context.beginPath();
+      this.context.fillStyle = gradientStyle;
+      this.context.arc(0, 0, 0.6 * this.width, 0, 2 * Math.PI);
+      this.context.fill();
 
-        let ring = new Path2D();
-        ring.moveTo(-this.width+5,-10);
-        ring.bezierCurveTo(-0.6*this.width*3.5,25,0.6*this.width*3.5,25,0.6*this.width-5,-10);
-        ring.moveTo(0.7*this.width-5,-10);
-        ring.bezierCurveTo(0.6*this.width*2.3,15,-0.6*this.width*2.3,15,-0.6*this.width+5,-10);
-        ring.closePath();
-        this.context.fill(ring);
+      let ring = new Path2D();
+      ring.moveTo(-this.width + 5, -10);
+      ring.bezierCurveTo(-0.6 * this.width * 3.5, 25, 0.6 * this.width * 3.5, 25, 0.6 * this.width - 5, -10);
+      ring.moveTo(0.7 * this.width - 5, -10);
+      ring.bezierCurveTo(0.6 * this.width * 2.3, 15, -0.6 * this.width * 2.3, 15, -0.6 * this.width + 5, -10);
+      ring.closePath();
+      this.context.fill(ring);
 
-        this.context.restore();
+      this.context.restore();
 
     }
 
   },
 
-  'backstone': function() {
+  'backstone': function () {
     this.context.save();
-    this.context.translate(this.viewX,this.viewY);
+    this.context.translate(this.viewX, this.viewY);
+    rewindFx(this);
 
-    let backStoneGradient = this.context.createLinearGradient(-12,0,12,0);
-    backStoneGradient.addColorStop(0,'#D1C4E9');
-    backStoneGradient.addColorStop(0.5,'#7E57C2');
-    backStoneGradient.addColorStop(1,'#3949AB');
+    let backStoneGradient = this.context.createLinearGradient(-12, 0, 12, 0);
+    backStoneGradient.addColorStop(0, '#D1C4E9');
+    backStoneGradient.addColorStop(0.5, '#7E57C2');
+    backStoneGradient.addColorStop(1, '#3949AB');
 
     this.context.lineWidth = 0;
 
     this.context.beginPath();
-    this.context.moveTo(-12,-3);
-    this.context.quadraticCurveTo(-1,-7,0,-12);
-    this.context.lineTo(12,-3);
-    this.context.lineTo(0,12);
-    this.context.lineTo(-12,-3);
+    this.context.moveTo(-12, -3);
+    this.context.quadraticCurveTo(-1, -7, 0, -12);
+    this.context.lineTo(12, -3);
+    this.context.lineTo(0, 12);
+    this.context.lineTo(-12, -3);
     this.context.fillStyle = backStoneGradient;
     this.context.shadowColor = 'white';
-    this.context.shadowBlur = initialValues.stoneShadow[Math.floor(Math.random()*initialValues.stoneShadow.length)];
+    this.context.shadowBlur = initialValues.stoneShadow[Math.floor(Math.random() * initialValues.stoneShadow.length)];
     this.context.fill();
 
     this.context.lineWidth = 1;
@@ -261,23 +269,24 @@ export default {
 
   },
 
-  'meteor_shower': function() {
+  'meteor_shower': function () {
     this.context.save();
-    this.context.translate(this.viewX,this.viewY);
+    this.context.translate(this.viewX, this.viewY);
+    rewindFx(this);
 
     this.context.beginPath();
-    this.context.arc(0,0,47,0.3*Math.PI,0.7*Math.PI);
-    this.context.bezierCurveTo(-45,15,-30,0,-(Math.random()*(34-26)+26),-15);
-    this.context.lineTo(-20,5);
-    this.context.lineTo(-(Math.random()*(29-21)+21),-35);
-    this.context.lineTo(-10,-15);
-    this.context.lineTo(0,-40);
-    this.context.lineTo(10,-15);
-    this.context.lineTo(Math.random()*(29-21)+21,-35);
-    this.context.lineTo(20,5);
-    var rightx = Math.random()*(34-26)+26;
-    this.context.lineTo(rightx,-15);
-    this.context.bezierCurveTo(rightx,0,45,15,25,41);
+    this.context.arc(0, 0, 47, 0.3 * Math.PI, 0.7 * Math.PI);
+    this.context.bezierCurveTo(-45, 15, -30, 0, -(Math.random() * (34 - 26) + 26), -15);
+    this.context.lineTo(-20, 5);
+    this.context.lineTo(-(Math.random() * (29 - 21) + 21), -35);
+    this.context.lineTo(-10, -15);
+    this.context.lineTo(0, -40);
+    this.context.lineTo(10, -15);
+    this.context.lineTo(Math.random() * (29 - 21) + 21, -35);
+    this.context.lineTo(20, 5);
+    var rightx = Math.random() * (34 - 26) + 26;
+    this.context.lineTo(rightx, -15);
+    this.context.bezierCurveTo(rightx, 0, 45, 15, 25, 41);
     this.context.fillStyle = '#FFD54F';
     this.context.fill();
 
@@ -285,33 +294,54 @@ export default {
     this.context.lineWidth = 1;
 
     this.context.beginPath();
-    this.context.arc(0,25,18,0,2*Math.PI);
+    this.context.arc(0, 25, 18, 0, 2 * Math.PI);
     this.context.fillStyle = '#A1887F';
     this.context.fill();
 
     this.context.beginPath();
-    this.context.arc(-10,25,3,0,1.2*Math.PI);
+    this.context.arc(-10, 25, 3, 0, 1.2 * Math.PI);
     this.context.strokeStyle = '#5D4037';
     this.context.stroke();
 
     this.context.beginPath();
-    this.context.arc(10,30,4,0,0.8*Math.PI);
+    this.context.arc(10, 30, 4, 0, 0.8 * Math.PI);
     this.context.strokeStyle = '#5D4037';
     this.context.stroke();
 
     this.context.beginPath();
-    this.context.arc(5,18,3,0,1.8*Math.PI);
+    this.context.arc(5, 18, 3, 0, 1.8 * Math.PI);
     this.context.strokeStyle = '#5D4037';
     this.context.stroke();
 
     this.context.beginPath();
-    this.context.arc(0,21,22,1.7*Math.PI,1.3*Math.PI);
-    this.context.quadraticCurveTo(-5,5,0,-15);
-    this.context.quadraticCurveTo(5,3,13,3);
+    this.context.arc(0, 21, 22, 1.7 * Math.PI, 1.3 * Math.PI);
+    this.context.quadraticCurveTo(-5, 5, 0, -15);
+    this.context.quadraticCurveTo(5, 3, 13, 3);
     this.context.fillStyle = 'rgba(255,138,101,0.5)';
     this.context.fill();
 
     this.context.restore();
   }
 
+}
+
+function rewindFx(current) {
+  if (initialValues.rewindMode) {
+    for (let i = 0; i < current.rewind.history.length; i++) {
+      //calculate the alpha value for every element on the rewind.history array
+      let alp = i / current.rewind.history.length;
+      // set the fill style
+      current.context.fillStyle = `rgba(255,0,0,${alp / 5})`;
+      //draw an arc
+      current.context.beginPath();
+      current.context.arc(
+        current.rewind.history[i].x - current.viewX,
+        current.rewind.history[i].y - current.viewY,
+        current.width / 2 * alp,
+        0,
+        2 * Math.PI
+      );
+      current.context.fill();
+    }
+  }
 }
