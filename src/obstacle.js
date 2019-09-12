@@ -53,8 +53,8 @@ export default class Obstacle extends Sprite.class {
         }
         else {
 
-            this.width = (Math.random() * (45 - 30) + 30);
-            this.height = (Math.random() * (45 - 30) + 30);
+            this.width = (Math.random() * (65 - 50) + 50);
+            this.height = (Math.random() * (65 - 50) + 50);
 
             // stationary object will be inside canvas
             this.x = Math.floor(Math.random() * initialValues.canvas.width);
