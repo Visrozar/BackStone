@@ -118,6 +118,14 @@
             box-shadow: 4px 7px rgba(88, 191, 202, 0.5294117647058824);
             transform: translateY(4px);
         }
+
+        .startgame > p {
+            font-size: 12px;
+        }
+
+        #obsinfo {
+            display: none;
+        }
     </style>
 </head>
 
@@ -127,9 +135,9 @@
     <span id=backStoneBoard class="backStoneBoard">BackStones: <span id="backStones">0</span> </span>
     <span id=warning class="warning">Alert! Meteor shower incoming!</span>
     <div id="menu" class="gameMenu">
-        <div class="content">
+        <div id='intro' class="content">
             <h1>Highest Score: <span id="highestScore">0</span></h1>
-            <div id="intro">
+            <div id="story">
                 <p>
                     <h1>Story: </h1>
                     <p>
@@ -157,10 +165,14 @@
                 </p>
             </div>
 
-            <button id="startGame">
-                <p>press "enter/spacebar" to begin</p>
-                Click here to begin
+            <button id="startGame" class="startgame">
+                <p>Press "Enter/Spacebar"</p>
+                Next
             </button>
+        </div>
+
+        <div id='obsinfo' class="content">
+            <h1>Avoid these obstacles</h1>
         </div>
 
     </div>

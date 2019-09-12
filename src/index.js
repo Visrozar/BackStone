@@ -3,6 +3,7 @@ import initialValues from './initialValues';
 import MeteorShower from './meteorShower';
 import ZZFX from './ZzFX.min.js';
 
+let stage = 0;
 let canvas = initialValues.canvas;
 
 // gameMenu initialization
@@ -44,8 +45,21 @@ let obstacles = [];
 let meteor_shower = new MeteorShower();
 
 // prevent default key behavior
-bindKeys(['left', 'right', 'up', 'down', 'enter', 'space'], function (e) {
+bindKeys(['left', 'right', 'up', 'down'], function (e) {
   e.preventDefault();
+});
+
+// if game not started yet, start game
+bindKeys(['enter', 'space'], function (e) {
+  if (!initialValues.gameStart) {
+    if (stage == 0) {
+      next();
+      stage = 1;
+    } else if (stage == 1) {
+      startGame();
+      stage = 2;
+    }
+  }
 });
 
 let endLoop = GameLoop({
@@ -61,12 +75,7 @@ let endLoop = GameLoop({
 // use kontra.gameLoop to play the animation
 let loop = GameLoop({
   update: function (dt) {
-    if (keyPressed('enter') || keyPressed('space')) {
-      // if game not started yet, start game
-      if (!initialValues.gameStart) {
-        startGame();
-      }
-    }
+
     background_sprite1.update();
     background_sprite2.update();
     background_sprite3.update();
@@ -140,6 +149,11 @@ function startGame() {
   document.getElementById('menu').style.display = 'none';
   initialValues.spawnObstacle = true;
   initialValues.gameStart = true;
+}
+
+function next() {
+  document.getElementById('story').style.display = 'none';
+  document.getElementById('obsinfo').style.display = 'block';
 }
 
 function restartScreen() {
