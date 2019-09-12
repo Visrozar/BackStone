@@ -8,18 +8,14 @@ let canvas = initialValues.canvas;
 // gameMenu initialization
 document.getElementById('startGame').onclick = function startGame() {
   document.getElementById('menu').style.display = 'none';
-  document.getElementById('myCanvas').style.display = 'block';
-  document.getElementById('scoreBoard').style.display = 'block';
-  document.getElementById('backStoneBoard').style.display = 'block';
-
-  // start the game
-  loop.start();
-  initKeys();
+  initialValues.spawnObstacle = true;
 }
 
 // set canvas width as 80% whatever device is being used
 canvas.width = window.innerWidth * 4 / 5;
 canvas.height = window.innerHeight;
+document.getElementById('menu').style.width = canvas.width + 'px';
+document.getElementById('menu').style.height = canvas.height + 'px';
 
 // import BG data
 import Bg_sprite from './bg';
@@ -40,7 +36,7 @@ background_sprite3.y = canvas.height;
 // create the player
 let player_sprite = Sprite(Player_sprite());
 // clamp sprites movement to the game between x1, y1, and x2, y2
-player_sprite.position.clamp(0, 0, canvas.width - player_sprite.width, canvas.height - player_sprite.height);
+player_sprite.position.clamp(player_sprite.width, 0, canvas.width - player_sprite.width, canvas.height - player_sprite.height);
 
 // initiate obstacle factory
 let obstacle_factory = new ObstacleFactory();
@@ -85,7 +81,7 @@ let loop = GameLoop({
       background_sprite2.y = -canvas.height;
     }
     player_sprite.update();
-    initialValues.score = initialValues.score + dt;
+    if(initialValues.gameStart) initialValues.score = initialValues.score + dt;
     document.getElementById('score').innerHTML = parseInt(initialValues.score);
     document.getElementById('backStones').innerHTML = parseInt(initialValues.backStones);
 
@@ -136,3 +132,8 @@ let loop = GameLoop({
     meteor_shower.render();
   }
 });
+
+
+// start the game
+loop.start();
+initKeys();

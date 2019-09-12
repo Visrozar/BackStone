@@ -4,6 +4,7 @@ import { init } from 'kontra';
 class initialValues {
     constructor() {
         // initial value of backstones, start from 0
+        this.gameStart = false;
         this.backStones = 3;
         this.core = init();
         this.canvas = this.core.canvas;
@@ -15,7 +16,7 @@ class initialValues {
         // backstone glow effect
         this.stoneShadow = [5,15,25];
         // decide whether spawn obstacle, stop spawning in case of backstone mode and meteor shower
-        this.spawnObstacle = true;
+        this.spawnObstacle = false;
         // decide whether we're in rewind mode
         this.rewindMode = false;
     }
