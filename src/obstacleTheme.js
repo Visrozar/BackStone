@@ -169,6 +169,7 @@ export default {
     gradientStyle.addColorStop(1, "white");
 
     this.context.beginPath();
+    this.context.strokeStyle = this.color;
     this.context.fillStyle = gradientStyle;
     this.context.arc(0,0,18,0,2*Math.PI);
     this.context.fill();
