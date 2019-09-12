@@ -1,4 +1,4 @@
-import { Sprite, GameLoop, initKeys, bindKeys } from 'kontra';
+import { Sprite, GameLoop, initKeys, bindKeys, keyPressed } from 'kontra';
 import initialValues from './initialValues';
 import MeteorShower from './meteorShower';
 import ZZFX from './ZzFX.min.js';
@@ -6,16 +6,13 @@ import ZZFX from './ZzFX.min.js';
 let canvas = initialValues.canvas;
 
 // gameMenu initialization
-document.getElementById('startGame').onclick = function startGame() {
-  document.getElementById('menu').style.display = 'none';
-  initialValues.spawnObstacle = true;
-}
+document.getElementById('startGame').onclick = startGame;
 
 // set canvas width as 80% whatever device is being used
 canvas.width = window.innerWidth * 4 / 5;
 canvas.height = window.innerHeight;
 document.getElementById('menu').style.width = canvas.width + 'px';
-document.getElementById('menu').style.height = canvas.height + 'px';
+// document.getElementById('menu').style.height = canvas.height + 'px';
 
 // import BG data
 import Bg_sprite from './bg';
@@ -47,7 +44,7 @@ let obstacles = [];
 let meteor_shower = new MeteorShower();
 
 // prevent default key behavior
-bindKeys(['left', 'right', 'up', 'down'], function (e) {
+bindKeys(['left', 'right', 'up', 'down', 'enter', 'space'], function (e) {
   e.preventDefault();
 });
 
@@ -62,8 +59,13 @@ let endLoop = GameLoop({
 
 // use kontra.gameLoop to play the animation
 let loop = GameLoop({
-
   update: function (dt) {
+    if (keyPressed('enter') || keyPressed('space')) {
+      // if game not started yet, start game
+      if (!initialValues.gameStart) {
+        startGame();
+      }
+    }
     background_sprite1.update();
     background_sprite2.update();
     background_sprite3.update();
@@ -81,7 +83,7 @@ let loop = GameLoop({
       background_sprite2.y = -canvas.height;
     }
     player_sprite.update();
-    if(initialValues.gameStart) initialValues.score = initialValues.score + dt;
+    if (initialValues.gameStart) initialValues.score = initialValues.score + dt;
     document.getElementById('score').innerHTML = parseInt(initialValues.score);
     document.getElementById('backStones').innerHTML = parseInt(initialValues.backStones);
 
@@ -133,6 +135,11 @@ let loop = GameLoop({
   }
 });
 
+function startGame() {
+  document.getElementById('menu').style.display = 'none';
+  initialValues.spawnObstacle = true;
+  initialValues.gameStart = true;
+}
 
 // start the game
 loop.start();
