@@ -109,7 +109,8 @@ let loop = GameLoop({
           ZZFX.z(3242, { length: .2 });
         }
         else {
-          ZZFX.z(4294, { length: 2, noise: 1 });
+          // ZZFX.z(4294, { length: 2, noise: 1 });
+          ZZFX.z(53966);
           player_sprite.destroy = true;
           loop.stop();
           endLoop.start();
