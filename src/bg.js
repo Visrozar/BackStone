@@ -40,7 +40,9 @@ export default function bg_sprite(stars) {
             } else {
                 if (keyPressed('down') && initialValues.backStones > 0) {
                     // backstone used
-                    initialValues.backStones--;
+                    if (initialValues.gameStart) {
+                        initialValues.backStones--;
+                    }
                     initialValues.rewindMode = true;
                     initialValues.spawnObstacle = false;
                     ZZFX.z(32, { length: 2 });
