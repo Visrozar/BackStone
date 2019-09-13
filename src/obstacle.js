@@ -106,9 +106,6 @@ export default class Obstacle extends Sprite.class {
     update() {
         if (initialValues.rewindMode) {
             if (!this.rewind.doneRewind()) {
-                //     initialValues.spawnObstacle = false;
-                // }
-                // else {
                 let rewind = this.rewind.back();
                 this.x = rewind.x;
                 this.y = rewind.y;
