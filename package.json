@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "build": "webpack",
-    "watch": "webpack --watch --progress"
+    "start": "webpack --watch --progress"
   },
   "keywords": [
     "game",
@@ -15,7 +15,7 @@
     "backStone",
     "js13k"
   ],
-  "author": "Elvis Rozario",
+  "author": "Elvis Rozario, Nishad Wadwekar",
   "license": "ISC",
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.4",
