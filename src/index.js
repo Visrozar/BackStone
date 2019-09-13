@@ -7,7 +7,7 @@ let stage = 0;
 let canvas = initialValues.canvas;
 
 // gameMenu initialization
-document.getElementById('startGame').onclick = startGame;
+document.getElementById('startGame').onclick = bindGame;
 
 // set canvas width as 80% whatever device is being used
 canvas.width = window.innerWidth * 4 / 5;
@@ -50,7 +50,7 @@ bindKeys(['left', 'right', 'up', 'down'], function (e) {
 });
 
 // if game not started yet, start game
-bindKeys(['enter', 'space'], function (e) {
+function bindGame(e) {
   if (!initialValues.gameStart) {
     if (stage == 0) {
       next();
@@ -58,9 +58,12 @@ bindKeys(['enter', 'space'], function (e) {
     } else if (stage == 1) {
       startGame();
       stage = 2;
+    } else if (stage == 2) {
+      restartGame();
     }
   }
-});
+}
+bindKeys(['enter', 'space'], bindGame);
 
 let endLoop = GameLoop({
   update: function (dt) {
@@ -159,9 +162,19 @@ function next() {
 
 function restartScreen() {
   document.getElementById('menu').style.display = 'block';
-  document.getElementById('intro').style.display = 'none';
+  document.getElementById('story').style.display = 'none';
+  initialValues.highestScore = initialValues.score > initialValues.highestScore ? parseInt(initialValues.score) : parseInt(initialValues.highestScore);
+  document.getElementById('highestScore').innerHTML = initialValues.highestScore;
   initialValues.spawnObstacle = false;
   initialValues.gameStart = false;
+}
+
+function restartGame() {
+  document.getElementById('menu').style.display = 'none';
+  initialValues.spawnObstacle = true;
+  initialValues.gameStart = true;
+  endLoop.stop();
+  loop.start();
 }
 
 // start the game
