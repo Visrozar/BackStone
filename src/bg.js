@@ -57,37 +57,37 @@ export default function bg_sprite(stars) {
             this.draw();
 
             // draw back
-            if (initialValues.rewindMode) {
-                let ctx = this.context;
-                let rewind_length = this.rewind.rewind.length;
-                ctx.beginPath();
-                ctx.font = canvas.width / 12 + "px Verdana";
-                // Create gradient
-                let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-                gradient.addColorStop("0", " magenta");
-                gradient.addColorStop("0.5", "blue");
-                gradient.addColorStop("1.0", "red");
-                // Fill with gradient
-                ctx.fillStyle = gradient;
-                ctx.fillText("BACK!", canvas.width / 2.7, canvas.height / 2);
+            // if (initialValues.rewindMode) {
+            //     let ctx = this.context;
+            //     let rewind_length = this.rewind.rewind.length;
+            //     ctx.beginPath();
+            //     ctx.font = canvas.width / 12 + "px Verdana";
+            //     // Create gradient
+            //     let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            //     gradient.addColorStop("0", " magenta");
+            //     gradient.addColorStop("0.5", "blue");
+            //     gradient.addColorStop("1.0", "red");
+            //     // Fill with gradient
+            //     ctx.fillStyle = gradient;
+            //     ctx.fillText("BACK!", canvas.width / 2.7, canvas.height / 2);
 
-                var drawCircle = function (color, lineWidth, percent) {
-                    let radius = canvas.width / 6;
-                    percent = Math.min(Math.max(0, percent || 1), 1);
-                    ctx.beginPath();
-                    ctx.arc(canvas.width / 2, canvas.height / 2.10, radius, 0, Math.PI * 2 * percent, false);
-                    ctx.strokeStyle = color;
-                    ctx.lineCap = 'round'; // butt, round or square
-                    ctx.lineWidth = lineWidth;
-                    ctx.stroke();
-                };
+            //     var drawCircle = function (color, lineWidth, percent) {
+            //         let radius = canvas.width / 6;
+            //         percent = Math.min(Math.max(0, percent || 1), 1);
+            //         ctx.beginPath();
+            //         ctx.arc(canvas.width / 2, canvas.height / 2.10, radius, 0, Math.PI * 2 * percent, false);
+            //         ctx.strokeStyle = color;
+            //         ctx.lineCap = 'round'; // butt, round or square
+            //         ctx.lineWidth = lineWidth;
+            //         ctx.stroke();
+            //     };
 
-                var drawNewGraph = function () {
-                    drawCircle('white', 15, 100 / 100);
-                    drawCircle(gradient, 15, rewind_length / 100);
-                };
-                drawNewGraph();
-            }
+            //     var drawNewGraph = function () {
+            //         drawCircle('white', 15, 100 / 100);
+            //         drawCircle(gradient, 15, rewind_length / 100);
+            //     };
+            //     drawNewGraph();
+            // }
 
             // draw stars
             for (let index = 0; index < stars.length; index++) {
