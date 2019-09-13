@@ -6,6 +6,7 @@ import themes from './obstacleTheme';
 
 let stage = 0;
 let canvas = initialValues.canvas;
+let player_sprite, obstacle_factory, obstacles, meteor_shower;
 
 // gameMenu initialization
 document.getElementById('startGame').onclick = bindGame;
@@ -24,26 +25,9 @@ import Star from './star';
 
 // Send star positions along with the background
 // create the background
-let background_sprite1 = Sprite(Bg_sprite(Star.getStarPositions()));
-let background_sprite2 = Sprite(Bg_sprite(Star.getStarPositions()));
-let background_sprite3 = Sprite(Bg_sprite(Star.getStarPositions()));
-// the second background should start from where the first background ends
-background_sprite2.y = 0;
-// the third background should start from where the second background ends
-background_sprite3.y = canvas.height;
-
-// create the player
-let player_sprite = Sprite(Player_sprite());
-// clamp sprites movement to the game between x1, y1, and x2, y2
-player_sprite.position.clamp(player_sprite.width, 0, canvas.width - player_sprite.width, canvas.height - player_sprite.height);
-
-// initiate obstacle factory
-let obstacle_factory = new ObstacleFactory();
-//array of active obstacles
-let obstacles = [];
-
-//initiate Meteor shower
-let meteor_shower = new MeteorShower();
+let background_sprite1;
+let background_sprite2;
+let background_sprite3;
 
 // prevent default key behavior
 bindKeys(['left', 'right', 'up', 'down'], function (e) {
@@ -183,12 +167,12 @@ function restartGame() {
   initialValues.spawnObstacle = true;
   initialValues.gameStart = true;
   endLoop.stop();
+  initializeObjects();
   loop.start();
 }
 
 let obstacleWidth = 120;
 let numberofObstacles = initialValues.canvas.width > (obstacleWidth * 4) ? 4 : initialValues.canvas.width > (obstacleWidth * 2) ? 2 : 1;
-console.log(numberofObstacles);
 
 //obstacles on start screen
 let asteroid = Sprite({
@@ -270,7 +254,36 @@ let backstone = Sprite({
     this.theme();
   }
 })
+function initializeObjects() {
+  // Send star positions along with the background
+  // create the background
+  background_sprite1 = Sprite(Bg_sprite(Star.getStarPositions()));
+  background_sprite2 = Sprite(Bg_sprite(Star.getStarPositions()));
+  background_sprite3 = Sprite(Bg_sprite(Star.getStarPositions()));
+  // the second background should start from where the first background ends
+  background_sprite2.y = 0;
+  // the third background should start from where the second background ends
+  background_sprite3.y = canvas.height;
+
+  // create the player
+  player_sprite = Sprite(new Player_sprite());
+  // clamp sprites movement to the game between x1, y1, and x2, y2
+  player_sprite.position.clamp(player_sprite.width, 0, canvas.width - player_sprite.width, canvas.height - player_sprite.height);
+
+  // initiate obstacle factory
+  obstacle_factory = new ObstacleFactory();
+  //array of active obstacles
+  obstacles = [];
+
+  //initiate Meteor shower
+  meteor_shower = new MeteorShower();
+
+  // reset values that need to be reset
+  initialValues.score = 0;
+  initialValues.backStones = 3;
+}
 
 // start the game
 loop.start();
 initKeys();
+initializeObjects();
