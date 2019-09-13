@@ -86,6 +86,10 @@
         }
 
         button {
+            position: absolute;
+            bottom: 6%;
+            margin: auto;
+            min-width: 100px;
             display: inline-block;
             padding: 15px 25px;
             font-size: 24px;
@@ -98,7 +102,6 @@
             border: none;
             border-radius: 15px;
             box-shadow: 0 9px #999;
-            margin-top: 5%;
             font-family: cursive;
             font-weight: 700;
             text-transform: uppercase;
@@ -106,7 +109,7 @@
 
         button>p {
             margin: 0px;
-            font-size: 8px;
+            font-size: 12px;
         }
 
         button:hover {
@@ -119,12 +122,12 @@
             transform: translateY(4px);
         }
 
-        .startgame > p {
-            font-size: 12px;
+        .obsinfo {
+            display: none;
         }
 
-        #obsinfo {
-            display: none;
+        .stone{
+            margin-top: 25%;
         }
     </style>
 </head>
@@ -165,14 +168,10 @@
                 </p>
             </div>
 
-            <button id="startGame" class="startgame">
+            <button id="startGame">
                 <p>Press "Enter/Spacebar"</p>
                 Next
             </button>
-        </div>
-
-        <div id='obsinfo' class="content">
-            <h1>Avoid these obstacles</h1>
         </div>
 
     </div>

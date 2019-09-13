@@ -2,6 +2,7 @@ import { Sprite, GameLoop, initKeys, bindKeys, keyPressed } from 'kontra';
 import initialValues from './initialValues';
 import MeteorShower from './meteorShower';
 import ZZFX from './ZzFX.min.js';
+import themes from './obstacleTheme';
 
 let stage = 0;
 let canvas = initialValues.canvas;
@@ -89,14 +90,12 @@ let loop = GameLoop({
       obstacle.update();
       // check if player collided with obstacle
       if (obstacle.collidesWith(player_sprite)) {
-        // console.log('collided with ' + obstacle.collider);
         if (obstacle.collider == 'backstone') {
           initialValues.backStones++;
           obstacles.splice(key, 1);
           ZZFX.z(3242, { length: .2 });
         }
         else {
-          // ZZFX.z(4294, { length: 2, noise: 1 });
           ZZFX.z(53966);
           player_sprite.destroy = true;
           loop.stop();
@@ -130,6 +129,15 @@ let loop = GameLoop({
 
     //rendor meteor shower
     meteor_shower.render();
+
+    //obstacle screen
+    if (stage == 1) {
+      asteroid.render();
+      star.render();
+      planet.render();
+      meteor.render();
+      backstone.render();
+    }
   }
 });
 
@@ -141,7 +149,8 @@ function startGame() {
 
 function next() {
   document.getElementById('story').style.display = 'none';
-  document.getElementById('obsinfo').style.display = 'block';
+  // document.getElementById('obsinfo').style.display = 'block';
+  document.getElementById('startGame').innerHTML = '<p>Press "Enter/Spacebar"</p>Click To Begin'
 }
 
 function restartScreen() {
@@ -162,6 +171,89 @@ function restartGame() {
   loop.start();
 }
 
+let obstacleWidth = 120;
+let numberofObstacles = initialValues.canvas.width > (obstacleWidth * 4) ? 4 : initialValues.canvas.width > (obstacleWidth * 2) ? 2 : 1;
+
+//obstacles on start screen
+let asteroid = Sprite({
+  x: initialValues.canvas.width * 0.1,
+  y: initialValues.canvas.height * 0.35,
+
+  theme: themes.movingThemes.asteroid1,
+
+  render: function () {
+    this.context.font = '2em cursive';
+    this.context.fillStyle = '#F5DEB3';
+    this.context.fillText('Avoid these obstacles', this.x - 40, this.y - 65)
+    this.theme();
+    this.context.font = '14px cursive';
+    this.context.fillStyle = '#F5DEB3';
+    this.context.fillText('Asteroids', this.x - 15, this.y + 65)
+  }
+})
+
+let star = Sprite({
+  x: initialValues.canvas.width * 0.4,
+  y: (numberofObstacles == 1)? initialValues.canvas.height * 0.55: initialValues.canvas.height * 0.35,
+  color: '#64B5F6',
+
+  theme: themes.shooting_star,
+
+  render: function () {
+    this.theme();
+    this.context.font = '14px cursive';
+    this.context.fillStyle = '#F5DEB3';
+    this.context.fillText('Shoooting Stars', this.x - 65, this.y + 65)
+  }
+})
+
+let planet = Sprite({
+  x: initialValues.canvas.width * 0.6,
+  y: (numberofObstacles == 1)? initialValues.canvas.height * 0.75: (numberofObstacles == 2)? initialValues.canvas.height*0.65:initialValues.canvas.height*0.35,
+  color: '#EC407A',
+  otherColor: '#E1BEE7',
+  width: 75,
+  height: 75,
+
+  theme: themes.stationaryThemes.planet1,
+
+  render: function () {
+    this.theme();
+    this.context.font = '14px cursive';
+    this.context.fillStyle = '#F5DEB3';
+    this.context.fillText('Planets', this.x - 18, this.y + 65)
+  }
+})
+
+let meteor = Sprite({
+  x: initialValues.canvas.width * 0.8,
+  y: (numberofObstacles == 1)? initialValues.canvas.height * 0.75: (numberofObstacles == 2)? initialValues.canvas.height*0.65:initialValues.canvas.height*0.35,
+
+  theme: themes.meteor_shower,
+
+  render: function () {
+    this.theme();
+    this.context.font = '14px cursive';
+    this.context.fillStyle = '#F5DEB3';
+    this.context.fillText('Meteors', this.x - 18, this.y + 65)
+  }
+})
+
+let backstone = Sprite({
+  x: initialValues.canvas.width * 0.1,
+  y: initialValues.canvas.height * 0.6,
+  width: 40,
+  height: 40,
+
+  theme: themes.backstone,
+
+  render: function () {
+    this.context.font = '2em cursive';
+    this.context.fillStyle = '#F5DEB3';
+    this.context.fillText('Try to collect as many BackStones as you can', this.x - 40, this.y - 40)
+    this.theme();
+  }
+})
 function initializeObjects() {
   // Send star positions along with the background
   // create the background

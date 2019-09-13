@@ -227,9 +227,9 @@ export default {
       this.context.fill();
 
       let ring = new Path2D();
-      ring.moveTo(-this.width + 5, -10);
+      ring.moveTo(-0.6*this.width + 5, -10);
       ring.bezierCurveTo(-0.6 * this.width * 3.5, 25, 0.6 * this.width * 3.5, 25, 0.6 * this.width - 5, -10);
-      ring.moveTo(0.7 * this.width - 5, -10);
+      ring.moveTo(0.6 * this.width - 5, -10);
       ring.bezierCurveTo(0.6 * this.width * 2.3, 15, -0.6 * this.width * 2.3, 15, -0.6 * this.width + 5, -10);
       ring.closePath();
       this.context.fill(ring);
