@@ -7,7 +7,7 @@ export default {
     'asteroid1': function () {
       this.context.save();
       this.context.translate(this.viewX, this.viewY);
-      rewindFx(this);
+      if(initialValues.gameStart) rewindFx(this);
 
       this.context.rotate(this.rotation);
 
@@ -49,7 +49,7 @@ export default {
     'asteroid2': function () {
       this.context.save();
       this.context.translate(this.viewX, this.viewY);
-      rewindFx(this);
+      if(initialValues.gameStart) rewindFx(this);
       this.context.rotate(this.rotation);
 
       this.context.lineWidth = 0;
@@ -104,7 +104,7 @@ export default {
     'asteroid3': function () {
       this.context.save();
       this.context.translate(this.viewX, this.viewY);
-      rewindFx(this);
+      if(initialValues.gameStart) rewindFx(this);
       this.context.rotate(this.rotation);
 
       this.context.beginPath();
@@ -159,7 +159,7 @@ export default {
 
     this.context.save();
     this.context.translate(this.viewX, this.viewY);
-    rewindFx(this);
+    if(initialValues.gameStart) rewindFx(this);
     this.context.rotate(this.rotation);
 
     this.context.lineWidth = 0;
@@ -196,7 +196,7 @@ export default {
 
       this.context.save();
       this.context.translate(this.viewX, this.viewY);
-      rewindFx(this);
+      if(initialValues.gameStart) rewindFx(this);
       this.context.rotate(this.rotation);
 
       var gradientStyle = this.context.createRadialGradient(10, 0, 15, 0, 0, 100);
@@ -215,7 +215,7 @@ export default {
       this.context.save();
       this.context.translate(this.viewX, this.viewY);
       this.context.rotate(this.rotation);
-      rewindFx(this);
+      if(initialValues.gameStart) rewindFx(this);
 
       var gradientStyle = this.context.createRadialGradient(10, 0, 15, 0, 0, 100);
       gradientStyle.addColorStop(0, this.otherColor);
@@ -243,7 +243,7 @@ export default {
   'backstone': function () {
     this.context.save();
     this.context.translate(this.viewX, this.viewY);
-    rewindFx(this);
+    if(initialValues.gameStart) rewindFx(this);
 
     let backStoneGradient = this.context.createLinearGradient(-12, 0, 12, 0);
     backStoneGradient.addColorStop(0, '#D1C4E9');
@@ -272,7 +272,7 @@ export default {
   'meteor_shower': function () {
     this.context.save();
     this.context.translate(this.viewX, this.viewY);
-    rewindFx(this);
+    if(initialValues.gameStart) rewindFx(this);
 
     this.context.beginPath();
     this.context.arc(0, 0, 47, 0.3 * Math.PI, 0.7 * Math.PI);
